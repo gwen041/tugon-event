@@ -1,0 +1,7 @@
+:root {
+  --font-display:  'Syne', sans-serif;
+  --font-body:     'DM Sans', sans-serif;
+
+}
+
+h1{ font-family: var(--font-display); letter-spacing: -0.02em; line-height: 1.15; }
