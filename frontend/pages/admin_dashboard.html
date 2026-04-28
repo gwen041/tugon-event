@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Dashboard — TUGON</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="../styles/admin_dashboard.css" />
 </head>
+
 <body>
 
   <!-- Sidebar -->
@@ -19,13 +23,13 @@
 
     <ul class="nav-menu">
       <li class="nav-item">
-        <a href="#" class="nav-link active">
+        <a href="admin_dashboard.html" class="nav-link active">
           <span class="icon">📅</span>
           <span>Events</span>
         </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="add_event.html" class="nav-link">
           <span class="icon">➕</span>
           <span>Add Event</span>
         </a>
@@ -40,7 +44,6 @@
 
     <div class="sidebar-footer">
       <a href="login.html" class="nav-link">
-        <span class="icon">⬅️</span>
         <span>Logout</span>
       </a>
     </div>
@@ -53,15 +56,17 @@
         <h1>Manage & Pin Events</h1>
         <p>One event must always be pinned as the Featured Event shown on the home page.</p>
       </div>
-      
+
       <div class="user-profile">
         <span>Admin Portal</span>
-        <div style="width: 32px; height: 32px; background: var(--teal-main); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">A</div>
+        <div
+          style="width: 32px; height: 32px; background: var(--teal-main); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">
+          A</div>
       </div>
     </header>
 
     <div class="events-grid">
-      
+
       <!-- Event Card 1 -->
       <div class="event-card featured">
         <div class="event-info">
@@ -116,15 +121,15 @@
   <script>
     // Simple UI interactions for demo
     document.querySelectorAll('.btn-pin').forEach(btn => {
-      btn.addEventListener('click', function() {
+      btn.addEventListener('click', function () {
         if (this.classList.contains('active')) return;
-        
+
         // Remove featured from others
         document.querySelectorAll('.event-card').forEach(card => {
           card.classList.remove('featured');
           const badge = card.querySelector('.badge-featured');
           if (badge) badge.remove();
-          
+
           const pinBtn = card.querySelector('.btn-pin');
           pinBtn.classList.remove('active');
           pinBtn.innerHTML = '📍 Pin as Featured';
@@ -135,7 +140,7 @@
         card.classList.add('featured');
         this.classList.add('active');
         this.innerHTML = '📌 Pinned';
-        
+
         const title = card.querySelector('h3');
         const badge = document.createElement('span');
         badge.className = 'badge-featured';
@@ -145,7 +150,7 @@
     });
 
     document.querySelectorAll('.btn-delete').forEach(btn => {
-      btn.addEventListener('click', function() {
+      btn.addEventListener('click', function () {
         if (confirm('Are you sure you want to delete this event?')) {
           this.closest('.event-card').style.opacity = '0';
           this.closest('.event-card').style.transform = 'translateX(20px)';
@@ -157,4 +162,5 @@
     });
   </script>
 </body>
+
 </html>

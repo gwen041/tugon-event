@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create New Event — TUGON</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/admin_dashboard.css" />
+</head>
+
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="../assets/icons/icon.png" alt="Icon" />
+      <span>TUGON</span>
+    </div>
+
+    <ul class="nav-menu">
+      <li class="nav-item">
+        <a href="admin_dashboard.html" class="nav-link">
+          <span class="icon">📅</span>
+          <span>Events</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="add_event.html" class="nav-link active">
+          <span class="icon">➕</span>
+          <span>Add Event</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <span class="icon">👥</span>
+          <span>Registrations</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <a href="login.html" class="nav-link">
+        <span>Logout</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="header-section">
+      <div class="header-text">
+        <h1>Create New Event</h1>
+        <p>Fill in the details below to publish a new school event.</p>
+      </div>
+
+      <div class="user-profile">
+        <span>Admin Portal</span>
+        <div
+          style="width: 32px; height: 32px; background: var(--teal-main); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">
+          A</div>
+      </div>
+    </header>
+
+    <div class="form-container">
+      <form class="admin-form" id="create-event-form">
+
+        <div class="form-left">
+          <!-- Section: Basic Info & Schedule -->
+          <div class="form-section">
+            <div class="section-header">
+              <span class="icon">📝</span>
+              <h2>General & Schedule</h2>
+            </div>
+            <div class="form-group">
+              <label for="event-title">Event Title *</label>
+              <input type="text" id="event-title" placeholder="e.g. Science Fair 2025" required />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="event-date">Date *</label>
+                <input type="date" id="event-date" required />
+              </div>
+              <div class="form-group">
+                <label>Time Range *</label>
+                <div class="time-range">
+                  <input type="time" id="start-time" required />
+                  <span>to</span>
+                  <input type="time" id="end-time" required />
+                </div>
+              </div>
+            </div>
+            <div class="form-group" style="margin-top: 0.5rem;">
+              <label for="event-location">Venue / Location *</label>
+              <select id="event-location" required>
+                <option value="" disabled selected>Select where it will happen...</option>
+                <option value="Auditorium">Auditorium</option>
+                <option value="Gymnasium">Gymnasium</option>
+                <option value="Facade">Facade</option>
+                <option value="Multi-purpose Hall">Multi-purpose Hall</option>
+                <option value="School Field">School Field</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-right">
+          <!-- Section: Detailed Info & Logistics -->
+          <div class="form-section" style="height: 100%; display: flex; flex-direction: column;">
+            <div class="section-header">
+              <span class="icon">⚙️</span>
+              <h2>Description & Logistics</h2>
+            </div>
+            <div class="form-group" style="flex-grow: 1; display: flex; flex-direction: column;">
+              <label for="event-description">Description *</label>
+              <textarea id="event-description" placeholder="Describe the event goals and activities..." required
+                style="flex-grow: 1; min-height: 180px;"></textarea>
+            </div>
+            <div class="form-row" style="margin-top: 1.5rem;">
+              <div class="form-group">
+                <label for="event-category">Category *</label>
+                <select id="event-category" required>
+                  <option value="" disabled selected>Select category...</option>
+                  <option value="Academic">Academic</option>
+                  <option value="Sports">Sports</option>
+                  <option value="Cultural">Cultural</option>
+                  <option value="Social">Social</option>
+                  <option value="Others">Others</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="event-capacity">Capacity (Max 300) *</label>
+                <input type="number" id="event-capacity" min="1" max="300" placeholder="Max 300" required />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-publish-container">
+          <button type="submit" class="btn btn-dash btn-publish">Publish Event →</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('create-event-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Animation effect on success
+      const btn = this.querySelector('.btn-publish');
+      btn.innerHTML = 'Publishing...';
+      btn.style.opacity = '0.7';
+      btn.style.pointerEvents = 'none';
+
+      setTimeout(() => {
+        alert('Event published successfully!');
+        window.location.href = 'admin_dashboard.html';
+      }, 1200);
+    });
+  </script>
+</body>
+
+</html>
