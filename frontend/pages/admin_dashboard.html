@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard — TUGON</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/admin_dashboard.css" />
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="../assets/icons/icon.png" alt="Icon" />
+      <span>TUGON</span>
+    </div>
+
+    <ul class="nav-menu">
+      <li class="nav-item">
+        <a href="#" class="nav-link active">
+          <span class="icon">📅</span>
+          <span>Events</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <span class="icon">➕</span>
+          <span>Add Event</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <span class="icon">👥</span>
+          <span>Registrations</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <a href="login.html" class="nav-link">
+        <span class="icon">⬅️</span>
+        <span>Logout</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="header-section">
+      <div class="header-text">
+        <h1>Manage & Pin Events</h1>
+        <p>One event must always be pinned as the Featured Event shown on the home page.</p>
+      </div>
+      
+      <div class="user-profile">
+        <span>Admin Portal</span>
+        <div style="width: 32px; height: 32px; background: var(--teal-main); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">A</div>
+      </div>
+    </header>
+
+    <div class="events-grid">
+      
+      <!-- Event Card 1 -->
+      <div class="event-card featured">
+        <div class="event-info">
+          <h3>Academic Excellence Summit <span class="badge-featured">Featured</span></h3>
+          <div class="event-meta">
+            <span>📅 April 28, 2025</span>
+            <span>📍 Auditorium</span>
+            <span>🏷️ Academic</span>
+          </div>
+        </div>
+        <div class="event-actions">
+          <button class="btn-dash btn-pin active">📌 Pinned</button>
+          <button class="btn-dash btn-delete">🗑️ Delete</button>
+        </div>
+      </div>
+
+      <!-- Event Card 2 -->
+      <div class="event-card">
+        <div class="event-info">
+          <h3>Cultural & Social Night</h3>
+          <div class="event-meta">
+            <span>📅 May 3, 2025</span>
+            <span>📍 Facade</span>
+            <span>🏷️ Cultural / Social</span>
+          </div>
+        </div>
+        <div class="event-actions">
+          <button class="btn-dash btn-pin">📍 Pin as Featured</button>
+          <button class="btn-dash btn-delete">🗑️ Delete</button>
+        </div>
+      </div>
+
+      <!-- Event Card 3 -->
+      <div class="event-card">
+        <div class="event-info">
+          <h3>Intramurals 2025</h3>
+          <div class="event-meta">
+            <span>📅 May 10-12, 2025</span>
+            <span>📍 Gymnasium</span>
+            <span>🏷️ Sports</span>
+          </div>
+        </div>
+        <div class="event-actions">
+          <button class="btn-dash btn-pin">📍 Pin as Featured</button>
+          <button class="btn-dash btn-delete">🗑️ Delete</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    // Simple UI interactions for demo
+    document.querySelectorAll('.btn-pin').forEach(btn => {
+      btn.addEventListener('click', function() {
+        if (this.classList.contains('active')) return;
+        
+        // Remove featured from others
+        document.querySelectorAll('.event-card').forEach(card => {
+          card.classList.remove('featured');
+          const badge = card.querySelector('.badge-featured');
+          if (badge) badge.remove();
+          
+          const pinBtn = card.querySelector('.btn-pin');
+          pinBtn.classList.remove('active');
+          pinBtn.innerHTML = '📍 Pin as Featured';
+        });
+
+        // Set this as featured
+        const card = this.closest('.event-card');
+        card.classList.add('featured');
+        this.classList.add('active');
+        this.innerHTML = '📌 Pinned';
+        
+        const title = card.querySelector('h3');
+        const badge = document.createElement('span');
+        badge.className = 'badge-featured';
+        badge.innerText = 'Featured';
+        title.appendChild(badge);
+      });
+    });
+
+    document.querySelectorAll('.btn-delete').forEach(btn => {
+      btn.addEventListener('click', function() {
+        if (confirm('Are you sure you want to delete this event?')) {
+          this.closest('.event-card').style.opacity = '0';
+          this.closest('.event-card').style.transform = 'translateX(20px)';
+          setTimeout(() => {
+            this.closest('.event-card').remove();
+          }, 300);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

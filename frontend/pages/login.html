@@ -143,6 +143,21 @@
         document.body.style.overflow = '';
       }
     });
+    // Admin Login Form Submission
+    const adminForm = document.getElementById('admin-login-form');
+    if (adminForm) {
+      adminForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const username = document.getElementById('admin-username').value;
+        const password = document.getElementById('admin-password').value;
+        
+        if (username === 'admin' && password === 'admin123') {
+          window.location.href = 'admin_dashboard.html';
+        } else {
+          alert('Invalid administrator credentials.');
+        }
+      });
+    }
   })();
 </script>
 </body>
