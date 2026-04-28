@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — TUGON</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/login.css" />
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-left">
+    <img src="../assets/icons/icon.png" alt="Icon" class="nav-icon" />
+  </div>
+  <div class="nav-links-right">
+    <span class="nav-login-text">Login</span>
+    <span id="admin-trigger" class="admin-dot" title="Admin Access"></span>
+  </div>
+</nav>
+
+<main class="page-content">
+  <div class="login-page">
+
+    <!-- Left Panel: System Logo -->
+    <div class="login-visual page-fade">
+      <div class="hero-glow"></div>
+      <img src="../assets/images/tugon_logo.png" alt="TUGON Logo" class="login-visual-logo" />
+      <p style="color: rgba(255,255,255,0.5); margin-top: 1rem; position: relative; z-index: 2;">School Event Management System</p>
+    </div>
+
+    <!-- Right Panel: Login Form -->
+    <div class="login-form-wrap">
+      <div class="form-card page-fade">
+        <h2>Welcome Back</h2>
+        <p class="subtitle">Please enter your details to sign in.</p>
+
+        <form id="login-form">
+          <div class="form-group">
+            <label for="login-email">Email Address</label>
+            <input type="email" id="login-email" placeholder="Enter your email" required />
+          </div>
+
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" placeholder="••••••••" required />
+          </div>
+
+          <div class="form-options">
+            <label class="remember-me">
+              <input type="checkbox" id="remember-password" />
+              <span>Remember password</span>
+            </label>
+            <a href="#" class="forgot-password">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Log In →</button>
+        </form>
+
+        <div class="create-account">
+          No account? <a href="register.html">Create an account</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer style="background: var(--black); color: rgba(255,255,255,0.3); padding: 2rem; text-align: center; font-size: 0.8rem; border-top: 1px solid rgba(0,122,122,0.12);">
+  &copy; 2025 TUGON School Event System
+</footer>
+
+<!-- Admin Portal Modal -->
+<div id="admin-modal" class="admin-modal-overlay">
+  <div class="admin-modal-container">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <img src="../assets/icons/icon.png" alt="Icon" class="modal-header-icon" />
+        <span class="modal-header-title">Admin Portal</span>
+      </div>
+      <button id="close-admin-modal" class="close-modal">&times;</button>
+    </div>
+    
+    <div class="modal-body">
+      <h3>Administrator Login</h3>
+      <p class="modal-subtitle">Restricted to authorized administrators only.</p>
+      
+      <form id="admin-login-form">
+        <div class="form-group">
+          <label for="admin-username">Username</label>
+          <input type="text" id="admin-username" placeholder="Enter username" required />
+        </div>
+        
+        <div class="form-group">
+          <label for="admin-password">Password</label>
+          <input type="password" id="admin-password" placeholder="••••••••" required />
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-admin">Sign In as Admin →</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Secret Admin Portal Trigger (5 clicks)
+  (function() {
+    let clickCount = 0;
+    let clickTimer = null;
+    const trigger = document.getElementById('admin-trigger');
+    const modal = document.getElementById('admin-modal');
+    const closeBtn = document.getElementById('close-admin-modal');
+    
+    if (trigger) {
+      trigger.addEventListener('click', (e) => {
+        clickCount++;
+        
+        // Reset count if too much time passes between clicks (e.g., 2 seconds)
+        clearTimeout(clickTimer);
+        clickTimer = setTimeout(() => {
+          clickCount = 0;
+        }, 2000);
+        
+        if (clickCount === 5) {
+          clickCount = 0;
+          modal.classList.add('show');
+          document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+      });
+    }
+    
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+      });
+    }
+    
+    // Close on overlay click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+      }
+    });
+  })();
+</script>
+</body>
+</html>
