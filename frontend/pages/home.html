@@ -1,136 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TUGON — School Event System</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="../styles/home.css" />
 </head>
+
 <body>
 
-<div class="admin-trigger-area" id="adminTrigger"></div>
 
-<nav class="navbar">
-  <a href="home.html" class="nav-logo">
-    <img src="../assets/images/tugon_logo.png" alt="TUGON Logo" />
-  </a>
-  <ul class="nav-links">
-    <li><a href="home.html" class="active">Home</a></li>
-    <li><a href="event.html">Events</a></li>
-    <li><a href="schedule.html">Schedule</a></li>
-    <li><a href="login.html">Login</a></li>
-    <li><a href="register.html" class="nav-cta">Register Now</a></li>
-  </ul>
-  <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-</nav>
+  <nav class="navbar">
+    <a href="home.html" class="nav-logo">
+      <img src="../assets/icons/tugon_logo.png" alt="TUGON Logo" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="home.html" class="active">Home</a></li>
+      <li><a href="event.html">Events</a></li>
+      <li><a href="schedule.html">Schedule</a></li>
+      <li><a href="event.html" class="nav-cta">Register Now</a></li>
+    </ul>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
 
-<main class="page-content">
-  <section class="hero">
-    <div class="hero-bg-grid"></div>
-    <div class="hero-glow"></div>
-    <div class="hero-inner">
-      <div class="hero-text"> <div class="hero-logo-display">
-          <img src="../assets/images/tugon_logo.png" alt="TUGON" style="height: 200px;" />
-        </div>
-        <h1 style="font-size:clamp(1.5rem,3vw,2.6rem);margin-top:0.3rem;">Your School's <span>Event Hub</span></h1>
-        <p>Discover, join, and celebrate everything happening on campus — from academic competitions to cultural nights and beyond.</p>
-        <div class="hero-btns">
-          <a href="event.html" class="btn btn-primary">Browse Events</a>
-          <a href="register.html" class="btn btn-outline">Register Now</a>
+  <main class="page-content">
+    <section class="hero">
+      <div class="hero-bg-grid"></div>
+      <div class="hero-glow"></div>
+      <div class="hero-inner">
+        <div class="hero-text">
+          <div class="hero-logo-display">
+            <img src="../assets/icons/tugon_logo.png" alt="TUGON" style="height: 200px;" />
+          </div>
+          <h1 style="font-size:clamp(1.5rem,3vw,2.6rem);margin-top:0.3rem;">Your School's <span>Event Hub</span></h1>
+          <p>Discover, join, and celebrate everything happening on campus — from academic competitions to cultural
+            nights and beyond.</p>
+          <div class="hero-btns">
+            <a href="event.html" class="btn btn-primary">Browse Events</a>
+            <a href="event.html" class="btn btn-outline">Register Now</a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section">
-    <div class="section-header">
-      <p class="section-label">Don't Miss Out</p>
-      <h2>Upcoming Events</h2>
-      <p>From academic competitions to lively cultural nights — find your next campus experience.</p>
-    </div>
-    
-    <div class="events-grid">
-      <div class="event-card">
-        <div class="card-img" style="background:linear-gradient(135deg,#0a3d18,#1a7a2e);">
-          <img src="../assets/images/academic.png" alt="Academic" style="width: 80px; height: 80px; object-fit: contain;" />
-          <span class="card-badge">Academic</span>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span>📅 April 28, 2025</span><span>📍 Main Hall</span></div>
-          <h3>Academic Excellence Summit</h3>
-          <p>A day-long symposium featuring student research presentations, faculty keynotes, and workshops.</p>
-        </div>
-        <div class="card-footer">
-          <span>🕒 8:00 AM – 5:00 PM</span>
-          <span>🟢 Open</span>
-        </div>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="../assets/icons/tugon_logo.png" alt="TUGON" />
+        <p>Your centralized school event management platform.</p>
       </div>
-
-      <div class="event-card">
-        <div class="card-img" style="background:linear-gradient(135deg,#7c2b8b,#be185d);">
-          <img src="../assets/images/cultural.png" alt="Cultural" style="width: 80px; height: 80px; object-fit: contain;" />
-          <span class="card-badge">Cultural</span>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span>📅 May 3, 2025</span><span>📍 Open Grounds</span></div>
-          <h3>Cultural & Social Night</h3>
-          <p>Celebrate diversity through music, dance, food stalls, and traditional costumes.</p>
-        </div>
-        <div class="card-footer">
-          <span>🕒 5:00 PM – 10:00 PM</span>
-          <span>🟢 Open</span>
-        </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <a href="home.html">Home</a>
+        <a href="event.html">Events</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="register.html">Register</a>
       </div>
-
-      <div class="event-card">
-        <div class="card-img" style="background:linear-gradient(135deg,#164e63,#0891b2);">
-          <img src="../assets/images/sports.png" alt="Sports" style="width: 80px; height: 80px; object-fit: contain;" />
-          <span class="card-badge">Sports</span>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span>📅 May 10–12, 2025</span><span>📍 Gym Complex</span></div>
-          <h3>Intramurals 2025</h3>
-          <p>Three days of thrilling inter-department sports competitions.</p>
-        </div>
-        <div class="card-footer">
-          <span>🕒 7:00 AM – 6:00 PM</span>
-          <span>🟡 Filling Up</span>
-        </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:alcantara_franzcharl@plpasig.edu.ph">alcantara_franzcharl@plpasig.edu.ph</a>
+        <a href="mailto:tabios_almiragwen@plpasig.edu.ph">tabios_almiragwen@plpasig.edu.ph</a>
+        <a href="mailto:bautista_joshuan@plpasig.edu.ph">bautista_joshuan@plpasig.edu.ph</a>
       </div>
     </div>
-
-    <div class="section-cta-container">
-        <a href="event.html" class="btn btn-primary">See All Events</a>
+    <div class="footer-bottom" style="text-align: center; display: block;">
+      <span>&copy; 2025 TUGON School Event System. All rights reserved.</span>
     </div>
-  </section>
-</main>
-
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <img src="../assets/images/tugon_logo.png" alt="TUGON" />
-      <p>Your centralized school event management platform.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Navigation</h4>
-      <a href="home.html">Home</a>
-      <a href="event.html">Events</a>
-      <a href="schedule.html">Schedule</a>
-      <a href="register.html">Register</a>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <a href="mailto:alcantara_franzcharl@plpasig.edu.ph">alcantara_franzcharl@plpasig.edu.ph</a>
-      <a href="mailto:tabios_almiragwen@plpasig.edu.ph">tabios_almiragwen@plpasig.edu.ph</a>
-      <a href="mailto:bautista_joshuan@plpasig.edu.ph">bautista_joshuan@plpasig.edu.ph</a>
-    </div>
-  </div>
-  <div class="footer-bottom" style="text-align: center; display: block;">
-    <span>&copy; 2025 TUGON School Event System. All rights reserved.</span>
-  </div>
-</footer>
+  </footer>
 
 </body>
+
 </html>
