@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up — TUGON</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/login.css" />
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="../assets/icons/icon.png" alt="Icon" class="nav-icon" />
+    </div>
+    <div class="nav-links-right">
+      <span class="nav-login-text">Sign-Up</span>
+    </div>
+  </nav>
+
+  <main class="page-content" style="height: 100vh; overflow: hidden; padding-top: 90px;">
+    <div class="login-page" style="height: calc(100vh - 90px); overflow: hidden;">
+
+      <!-- Left Panel: System Logo & Invitation -->
+      <div class="login-visual page-fade" style="padding: 2rem;">
+        <div class="hero-glow"></div>
+        <img src="../assets/icons/tugon_logo.png" alt="TUGON Logo" class="login-visual-logo" style="height: 240px;" />
+        <h1 style="color: white; font-family: var(--font-display); position: relative; z-index: 2; font-size: 2.2rem; margin-top: 1rem;">Join the Event</h1>
+        <p style="color: rgba(255,255,255,0.5); margin-top: 0.5rem; position: relative; z-index: 2; text-align: center; max-width: 320px; font-size: 0.9rem;">
+          Sign-up now to secure your spot and be part of an unforgettable campus experience.
+        </p>
+      </div>
+
+      <!-- Right Panel: Registration Form -->
+      <div class="login-form-wrap" style="padding: 1rem 2rem;">
+        <div class="form-card page-fade" style="max-width: 480px; padding: 1.5rem 2.25rem; transform: scale(0.88); transform-origin: center;">
+          <h2 style="font-size: 1.7rem;">Sign-Up</h2>
+          <p class="subtitle" style="margin-bottom: 1rem;">Fill in the details below to create your account</p>
+
+          <form id="register-form" style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <div class="form-row" style="gap: 0.75rem;">
+              <div class="form-group" style="margin-bottom: 0;">
+                <label for="reg-first-name" style="font-size: 0.65rem;">First Name *</label>
+                <input type="text" id="reg-first-name" placeholder="JUAN" required style="padding: 0.65rem 1rem;" />
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label for="reg-last-name" style="font-size: 0.65rem;">Last Name *</label>
+                <input type="text" id="reg-last-name" placeholder="DELA CRUZ" required style="padding: 0.65rem 1rem;" />
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0;">
+              <label for="reg-email" style="font-size: 0.65rem;">Email Address *</label>
+              <input type="email" id="reg-email" placeholder="juandelacruz@gmail.com" required style="padding: 0.65rem 1rem;" />
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0;">
+              <label for="reg-password" style="font-size: 0.65rem;">Password *</label>
+              <input type="password" id="reg-password" placeholder="••••••••" required style="padding: 0.65rem 1rem;" />
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0;">
+              <label for="reg-student-id" style="font-size: 0.65rem;">Student ID *</label>
+              <input type="text" id="reg-student-id" placeholder="21-00000" required style="padding: 0.65rem 1rem;" />
+            </div>
+
+            <div class="form-row" style="gap: 0.75rem;">
+              <div class="form-group" style="margin-bottom: 0;">
+                <label for="reg-college" style="font-size: 0.65rem;">College *</label>
+                <select id="reg-college" required style="padding: 0.65rem 1rem;">
+                  <option value="" disabled selected>Select College</option>
+                  <option value="Arts and Sciences">Arts and Sciences</option>
+                  <option value="Business and Accountancy">Business and Accountancy</option>
+                  <option value="Computer Studies">Computer Studies</option>
+                  <option value="Education">Education</option>
+                  <option value="Engineering">Engineering</option>
+                  <option value="International Hospitality Management">Hospitality Management</option>
+                  <option value="Nursing">Nursing</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label for="reg-year" style="font-size: 0.65rem;">Year Level *</label>
+                <select id="reg-year" required style="padding: 0.65rem 1rem;">
+                  <option value="" disabled selected>Select Year</option>
+                  <option value="1st Year">1st Year</option>
+                  <option value="2nd Year">2nd Year</option>
+                  <option value="3rd Year">3rd Year</option>
+                  <option value="4th Year">4th Year</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem; padding: 0.7rem 1.8rem;">Create Account →</button>
+          </form>
+
+          <div class="create-account" style="margin-top: 0.75rem;">
+            Already have an account? <a href="login.html">Log In</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('register-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Registration successful! You can now log in.');
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+
+</html>

@@ -19,8 +19,8 @@
     </div>
     <div class="nav-links-right">
       <span class="nav-login-text">Login</span>
-      <span id="admin-trigger" class="admin-dot" title="Admin Access"></span>
     </div>
+    <span id="admin-trigger" class="admin-dot" title="Admin Access"></span>
   </nav>
 
   <main class="page-content">
@@ -29,10 +29,7 @@
       <!-- Left Panel: System Logo -->
       <div class="login-visual page-fade">
         <div class="hero-glow"></div>
-        <img src="../assets/images/tugon_logo.png" alt="TUGON Logo" class="login-visual-logo" />
-        <h1 style="color: white; font-family: var(--font-display); position: relative; z-index: 2; font-size: 3rem;">TUGON</h1>
-        <p style="color: rgba(255,255,255,0.5); margin-top: 1rem; position: relative; z-index: 2;">School Event
-          Management System</p>
+        <img src="../assets/icons/tugon_logo.png" alt="TUGON Logo" class="login-visual-logo" />
       </div>
 
       <!-- Right Panel: Login Form -->
@@ -64,7 +61,7 @@
           </form>
 
           <div class="create-account">
-            No account? <a href="register.html">Create an account</a>
+            No account? <a href="signup.html">Create an account</a>
           </div>
         </div>
       </div>
@@ -74,7 +71,7 @@
 
   <footer
     style="background: var(--black); color: rgba(255,255,255,0.3); padding: 2rem; text-align: center; font-size: 0.8rem; border-top: 1px solid rgba(0,122,122,0.12);">
-    &copy; 2025 TUGON School Event System
+    &copy; 2026 TUGON School Event System
   </footer>
 
   <!-- Admin Portal Modal -->
@@ -110,6 +107,22 @@
   </div>
 
   <script>
+    // Student Login Form Submission
+    const loginForm = document.getElementById('login-form');
+    if (loginForm) {
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+
+        if (email === 'student@gmail.com' && password === 'student123') {
+          window.location.href = '../pages/home.html'; // Redirect to home
+        } else {
+          alert('Invalid student credentials.');
+        }
+      });
+    }
+
     // Secret Admin Portal Trigger (5 clicks)
     (function () {
       let clickCount = 0;
@@ -143,15 +156,9 @@
         });
       }
 
-      // Close on overlay click
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.classList.remove('show');
-          document.body.style.overflow = '';
-        }
-      });
-
-      // Admin Login Form Submission
+      /* Close on overlay click removed as per request for persistence */
+    
+    // Admin Login Form Submission
       const adminForm = document.getElementById('admin-login-form');
       if (adminForm) {
         adminForm.addEventListener('submit', (e) => {
