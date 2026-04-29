@@ -35,7 +35,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="registrations.html" class="nav-link">
           <span class="icon">👥</span>
           <span>Registrations</span>
         </a>
@@ -109,17 +109,20 @@
 
         <div class="form-right">
           <!-- Section: Detailed Info & Logistics -->
-          <div class="form-section" style="height: 100%; display: flex; flex-direction: column;">
+          <div class="form-section" style="height: 100%; display: flex; flex-direction: column; min-height: 520px;">
             <div class="section-header">
               <span class="icon">⚙️</span>
               <h2>Description & Logistics</h2>
             </div>
-            <div class="form-group" style="flex-grow: 1; display: flex; flex-direction: column;">
+            
+            <div class="form-group" style="flex-grow: 1; display: flex; flex-direction: column; margin-bottom: 1.5rem;">
               <label for="event-description">Description *</label>
               <textarea id="event-description" placeholder="Describe the event goals and activities..." required
-                style="flex-grow: 1; min-height: 180px;"></textarea>
+                style="flex-grow: 1; min-height: 120px;"></textarea>
             </div>
-            <div class="form-row" style="margin-top: 1.5rem;">
+
+            <!-- Integrated Logistics Grid -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
               <div class="form-group">
                 <label for="event-category">Category *</label>
                 <select id="event-category" required>
@@ -135,6 +138,43 @@
                 <label for="event-capacity">Capacity (Max 300) *</label>
                 <input type="number" id="event-capacity" min="1" max="300" placeholder="Max 300" required />
               </div>
+              
+              <div class="form-group">
+                <label>Target Audience *</label>
+                <select id="target-audience-type" required onchange="toggleAudienceFields()">
+                  <option value="All">All Students</option>
+                  <option value="Specific">Specific College & Year</option>
+                </select>
+              </div>
+
+              <!-- Specific Fields that appear in the same grid -->
+              <div id="audience-college-wrap" style="display: none;">
+                <div class="form-group">
+                  <label for="target-college">Target College</label>
+                  <select id="target-college">
+                    <option value="Arts and Sciences">College of Arts and Sciences</option>
+                    <option value="Business and Accountancy">College of Business and Accountancy</option>
+                    <option value="Computer Studies">College of Computer Studies</option>
+                    <option value="Education">College of Education</option>
+                    <option value="Engineering">College of Engineering</option>
+                    <option value="International Hospitality Management">College of International Hospitality Management</option>
+                    <option value="Nursing">College of Nursing</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div id="audience-year-wrap" style="display: none;">
+                <div class="form-group">
+                  <label for="target-year">Target Year</label>
+                  <select id="target-year">
+                    <option value="1st Year">1st Year</option>
+                    <option value="2nd Year">2nd Year</option>
+                    <option value="3rd Year">3rd Year</option>
+                    <option value="4th Year">4th Year</option>
+                    <option value="All Years">All Years</option>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -147,6 +187,16 @@
   </main>
 
   <script>
+    function toggleAudienceFields() {
+      const type = document.getElementById('target-audience-type').value;
+      const collegeWrap = document.getElementById('audience-college-wrap');
+      const yearWrap = document.getElementById('audience-year-wrap');
+      
+      const isSpecific = type === 'Specific';
+      collegeWrap.style.display = isSpecific ? 'block' : 'none';
+      yearWrap.style.display = isSpecific ? 'block' : 'none';
+    }
+
     document.getElementById('create-event-form').addEventListener('submit', function (e) {
       e.preventDefault();
 

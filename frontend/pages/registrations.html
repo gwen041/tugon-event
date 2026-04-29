@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Registrations — TUGON</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/admin_dashboard.css" />
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="../assets/icons/icon.png" alt="Icon" />
+      <span>TUGON</span>
+    </div>
+
+    <ul class="nav-menu">
+      <li class="nav-item">
+        <a href="admin_dashboard.html" class="nav-link">
+          <span class="icon">📅</span>
+          <span>Events</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="add_event.html" class="nav-link">
+          <span class="icon">➕</span>
+          <span>Add Event</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="registrations.html" class="nav-link active">
+          <span class="icon">👥</span>
+          <span>Registrations</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <a href="login.html" class="nav-link">
+        <span>Logout</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="header-section">
+      <div class="header-text">
+        <h1>Event Registrations</h1>
+        <p>Select an event to view the list of registered participants.</p>
+      </div>
+      
+      <div class="user-profile">
+        <span>Admin Portal</span>
+        <div style="width: 32px; height: 32px; background: var(--teal-main); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">A</div>
+      </div>
+    </header>
+
+    <div class="reg-container">
+      <div class="form-section">
+        <div class="section-header">
+          <span class="icon">🎯</span>
+          <h2>Registrations by Event</h2>
+        </div>
+        
+        <div class="event-selector" id="event-selector">
+          <button class="btn-event-pill" data-event="Academic Excellence Summit">Academic Excellence Summit</button>
+          <button class="btn-event-pill" data-event="Cultural & Social Night">Cultural & Social Night</button>
+          <button class="btn-event-pill" data-event="Intramurals 2025">Intramurals 2025</button>
+          <button class="btn-event-pill" data-event="Hackathon 2025">Hackathon 2025</button>
+        </div>
+
+        <div id="participants-container">
+          <div class="no-selection-msg">
+            <p>Select an event above to view participants.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Mock Data for demonstration
+    const registrationData = {
+      "Academic Excellence Summit": [
+        "Juan dela Cruz",
+        "Ana Lim",
+        "Liza Mendoza",
+        "Mark Santos",
+        "Elena Reyes"
+      ],
+      "Cultural & Social Night": [
+        "Robert Chen",
+        "Sarah Johnson",
+        "Michael Garcia",
+        "Emily Davis"
+      ],
+      "Intramurals 2025": [
+        "David Wilson",
+        "Chris Evans",
+        "Jessica Alba",
+        "Ryan Reynolds",
+        "Tom Holland",
+        "Zendaya"
+      ],
+      "Hackathon 2025": [
+        "Steve Jobs",
+        "Bill Gates",
+        "Ada Lovelace",
+        "Alan Turing"
+      ]
+    };
+
+    const selector = document.getElementById('event-selector');
+    const container = document.getElementById('participants-container');
+
+    selector.addEventListener('click', (e) => {
+      const btn = e.target.closest('.btn-event-pill');
+      if (!btn) return;
+
+      // Update active state
+      document.querySelectorAll('.btn-event-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const eventName = btn.getAttribute('data-event');
+      const participants = registrationData[eventName] || [];
+
+      renderParticipants(eventName, participants);
+    });
+
+    function renderParticipants(eventName, list) {
+      let html = `
+        <div class="participants-header">
+          <h3><span>${list.length}</span> participants registered for <span>${eventName}</span></h3>
+        </div>
+        <div class="participants-list">
+      `;
+
+      if (list.length === 0) {
+        html += `<div class="no-selection-msg">No participants registered for this event yet.</div>`;
+      } else {
+        list.forEach((name, index) => {
+          html += `
+            <div class="participant-card" style="animation: slideIn 0.3s ease forwards ${index * 0.05}s; opacity: 0;">
+              <div class="participant-num">${index + 1}</div>
+              <div class="participant-name">${name}</div>
+            </div>
+          `;
+        });
+      }
+
+      html += `</div>`;
+      container.innerHTML = html;
+    }
+  </script>
+
+  <style>
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+  </style>
+</body>
+</html>

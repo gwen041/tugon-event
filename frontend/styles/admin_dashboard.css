@@ -129,10 +129,11 @@ body {
 .event-card {
   background: var(--dark-card);
   border-radius: var(--radius-lg);
-  padding: 1.75rem 2rem;
+  padding: 1.75rem 2.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 2rem; /* Add gap between info and actions */
   border: 1px solid rgba(0, 122, 122, 0.1);
   transition: all 0.3s ease;
   position: relative;
@@ -141,7 +142,7 @@ body {
 
 .event-card:hover {
   border-color: rgba(0, 122, 122, 0.3);
-  transform: translateX(5px);
+  transform: translateY(-2px);
   background: #1a1a1a;
 }
 
@@ -150,12 +151,19 @@ body {
   background: linear-gradient(135deg, #161616 0%, #0d2a2a 100%);
 }
 
+.event-info {
+  flex: 1;
+  min-width: 0; /* Important to prevent overflow compression */
+}
+
 .event-info h3 {
-  font-size: 1.25rem;
-  margin-bottom: 0.4rem;
+  font-size: 1.35rem;
+  margin-bottom: 0.6rem;
   display: flex;
   align-items: center;
-  gap: 10px;
+  flex-wrap: wrap; /* Allow badge to wrap if title is too long */
+  gap: 12px;
+  color: white;
 }
 
 .badge-featured {
@@ -171,14 +179,16 @@ body {
 
 .event-meta {
   color: rgba(255, 255, 255, 0.55);
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   display: flex;
-  gap: 15px;
+  flex-wrap: wrap; /* Prevent metadata from overlapping buttons */
+  gap: 20px;
 }
 
 .event-actions {
   display: flex;
   gap: 12px;
+  flex-shrink: 0; /* Prevent buttons from being compressed */
 }
 
 .btn-dash {
@@ -344,11 +354,21 @@ body {
   width: 100%;
 }
 
+.form-group select {
+  padding-right: 3rem; /* Extra space for the arrow */
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23007a7a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.25rem center;
+  background-size: 1.1rem;
+}
+
 .form-group input:hover, 
 .form-group select:hover, 
 .form-group textarea:hover {
   border-color: rgba(0, 122, 122, 0.3);
-  background: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .form-group input:focus, 
@@ -356,7 +376,7 @@ body {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--teal-main);
-  background: rgba(0, 122, 122, 0.08);
+  background-color: rgba(0, 122, 122, 0.08);
   box-shadow: 0 0 20px rgba(0, 122, 122, 0.15), inset 0 0 10px rgba(0, 122, 122, 0.05);
   transform: translateY(-1px);
 }
@@ -418,3 +438,109 @@ body {
 }
 
 
+
+/* --- Registrations Section Styles --- */
+.reg-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.event-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.btn-event-pill {
+  background: rgba(0, 122, 122, 0.05);
+  border: 1px solid rgba(0, 122, 122, 0.2);
+  color: var(--teal-light);
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-event-pill:hover {
+  background: rgba(0, 122, 122, 0.15);
+  border-color: var(--teal-main);
+  transform: translateY(-2px);
+}
+
+.btn-event-pill.active {
+  background: var(--teal-main);
+  color: white;
+  border-color: var(--teal-main);
+  box-shadow: 0 8px 20px rgba(0, 122, 122, 0.3);
+}
+
+.participants-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 122, 122, 0.1);
+}
+
+.participants-header h3 {
+  font-size: 1.25rem;
+  color: white;
+}
+
+.participants-header span {
+  color: var(--teal-main);
+  font-weight: 700;
+}
+
+.participants-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.participant-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1.25rem 2rem;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.participant-card:hover {
+  background: rgba(0, 122, 122, 0.08);
+  border-color: rgba(0, 122, 122, 0.3);
+  transform: translateX(10px);
+}
+
+.participant-num {
+  width: 36px;
+  height: 36px;
+  background: rgba(0, 122, 122, 0.2);
+  color: var(--teal-main);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.participant-name {
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.no-selection-msg {
+  text-align: center;
+  padding: 5rem;
+  color: rgba(255, 255, 255, 0.3);
+  font-style: italic;
+  border: 2px dashed rgba(0, 122, 122, 0.1);
+  border-radius: 24px;
+}
