@@ -41,12 +41,12 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; line
 .navbar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 2rem; height: 75px;
+  padding: 0 2rem; height: 90px;
   background: rgba(10,10,10,0.92);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(0,122,122,0.2);
 }
-.nav-logo img { height: 45px; width: auto; object-fit: contain; }
+.nav-logo img { height: 75px; width: auto; object-fit: contain; }
 .nav-links { display: flex; gap: 2rem; align-items: center; margin-left: auto; }
 .nav-links a:not(.nav-cta) {
   font-family: var(--font-body); font-size: 0.8rem; font-weight: 800;

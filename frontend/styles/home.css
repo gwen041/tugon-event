@@ -61,7 +61,7 @@ p  { font-size: 1rem; line-height: 1.7; color: var(--gray-mid); }
 .navbar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 2rem; height: 75px; 
+  padding: 0 2rem; height: 90px; 
   background: rgba(10,10,10,0.92);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(0,122,122,0.2);
@@ -69,7 +69,7 @@ p  { font-size: 1rem; line-height: 1.7; color: var(--gray-mid); }
 }
 .nav-logo { display: flex; align-items: center; }
 .nav-logo img {
-  height: 45px;
+  height: 75px;
   width: auto;
   object-fit: contain;
 }
@@ -147,7 +147,7 @@ p  { font-size: 1rem; line-height: 1.7; color: var(--gray-mid); }
 }
 .btn-outline:hover { border-color: var(--teal-main); color: var(--teal-main); }
 
-.page-content { padding-top: 75px; }
+.page-content { padding-top: 90px; }
 
 .hero {
   position: relative; min-height: 100vh;

@@ -51,12 +51,12 @@
     .navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 2rem; height: 75px;
+      padding: 0 2rem; height: 90px;
       background: rgba(10,10,10,0.92);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(0,122,122,0.2);
     }
-    .nav-logo img { height: 45px; width: auto; object-fit: contain; }
+    .nav-logo img { height: 75px; width: auto; object-fit: contain; }
     .nav-links { display: flex; gap: 2rem; align-items: center; margin-left: auto; }
     .nav-links a:not(.nav-cta) {
       font-family: var(--font-body); font-size: 0.8rem; font-weight: 800;
@@ -110,7 +110,7 @@
     .btn-sm { padding: 0.55rem 1.3rem; font-size: 0.82rem; }
     .btn-full { width: 100%; justify-content: center; }
 
-    .page-content { padding-top: 75px; }
+    .page-content { padding-top: 90px; }
 
     /* ── FEATURED EVENT HERO ── */
     .event-detail-hero {
