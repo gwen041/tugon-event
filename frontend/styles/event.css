@@ -80,6 +80,97 @@
       font-family: var(--font-body) !important; letter-spacing: 0.05em;
     }
     .nav-cta:hover { filter: brightness(1.1); }
+
+    /* User Dropdown */
+    .nav-user-dropdown {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .user-trigger {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(0, 122, 122, 0.3);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      margin: 0 0.5rem;
+    }
+
+    .user-trigger:hover {
+      background: rgba(0, 122, 122, 0.2);
+      border-color: var(--teal-main);
+      transform: translateY(-2px);
+    }
+
+    .user-avatar {
+      font-size: 1.2rem;
+    }
+
+    .user-dropdown {
+      position: absolute;
+      top: calc(100% + 15px);
+      right: 0;
+      width: 200px;
+      background: var(--dark-card);
+      border: 1px solid rgba(0, 122, 122, 0.2);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-pop);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 0.8rem;
+      z-index: 2000;
+    }
+
+    .nav-user-dropdown:hover .user-dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-header {
+      padding: 0.5rem 0.8rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      margin-bottom: 0.5rem;
+    }
+
+    .user-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--white);
+      font-family: var(--font-display);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      padding: 0.7rem 0.8rem;
+      border-radius: var(--radius-sm);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .dropdown-item:hover {
+      background: rgba(0, 122, 122, 0.15);
+      color: var(--white);
+    }
+
+    .logout-item {
+      color: #ff4d4d !important;
+    }
+
+    .logout-item:hover {
+      background: rgba(255, 77, 77, 0.1) !important;
+    }
     .hamburger {
       display: none; flex-direction: column; gap: 5px;
       cursor: pointer; padding: 4px; background: none; border: none;
