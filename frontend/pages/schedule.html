@@ -10,7 +10,136 @@
 </head>
 <body>
 
-  <h1>Schedule</h1>
-  
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="home.html" class="nav-logo">
+      <img src="../assets/icons/tugon_logo.png" alt="TUGON Logo" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="event.html">Events</a></li>
+      <li><a href="schedule.html" class="active">Schedule</a></li>
+    </ul>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <header class="schedule-hero">
+    <span class="hero-label">Plan Ahead</span>
+    <h1>Event Schedule</h1>
+    <p class="hero-desc">
+      A complete timeline of all campus events this term. Filter by category to find what matters most to you.
+    </p>
+  </header>
+
+  <!-- FILTERS -->
+  <section class="filter-container">
+    <button class="filter-btn active">All Events</button>
+    <button class="filter-btn">Academic</button>
+    <button class="filter-btn">Cultural/Social</button>
+    <button class="filter-btn">Sports</button>
+  </section>
+
+  <!-- SCHEDULE TABLE -->
+  <main class="schedule-container">
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Event</th>
+            <th>Location</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>April 28, 2026</td>
+            <td class="time-cell">8:00 - 5:00 PM</td>
+            <td class="event-name">Academic Excellence Summit</td>
+            <td>Main Hall, Building A</td>
+            <td><span class="category-badge academic">Academic</span></td>
+            <td class="status-cell"><span class="status-dot"></span> Open</td>
+            <td><a href="event.html#confirm-modal-1" class="btn-register">Register</a></td>
+          </tr>
+          <tr>
+            <td>May 5, 2026</td>
+            <td class="time-cell">6:00 - 9:00 PM</td>
+            <td class="event-name">Cultural & Social Night</td>
+            <td>Open Plaza</td>
+            <td><span class="category-badge cultural">Cultural</span></td>
+            <td class="status-cell"><span class="status-dot"></span> Open</td>
+            <td><a href="event.html#confirm-modal-2" class="btn-register">Register</a></td>
+          </tr>
+          <tr>
+            <td>May 7, 2026</td>
+            <td class="time-cell">8:00 - 5:00 PM</td>
+            <td class="event-name">Intramurals 2025</td>
+            <td>Sports Complex</td>
+            <td><span class="category-badge sports">Sports</span></td>
+            <td class="status-cell"><span class="status-dot"></span> Open</td>
+            <td><a href="event.html#confirm-modal-3" class="btn-register">Register</a></td>
+          </tr>
+          <tr>
+            <td>May 12, 2026</td>
+            <td class="time-cell">5:00 - 8:00 PM</td>
+            <td class="event-name">Talent Showcase Night</td>
+            <td>University Theater</td>
+            <td><span class="category-badge cultural">Cultural</span></td>
+            <td class="status-cell"><span class="status-dot"></span> Open</td>
+            <td><a href="event.html#confirm-modal-4" class="btn-register">Register</a></td>
+          </tr>
+          <tr>
+            <td>May 15, 2026</td>
+            <td class="time-cell">24 Hours</td>
+            <td class="event-name">Hackathon: Code for Change</td>
+            <td>IT Laboratory</td>
+            <td><span class="category-badge tech">Tech</span></td>
+            <td class="status-cell"><span class="status-dot"></span> Open</td>
+            <td><a href="event.html#confirm-modal-5" class="btn-register">Register</a></td>
+          </tr>
+          <tr>
+            <td>May 20, 2026</td>
+            <td class="time-cell">10:00 - 12:00 PM</td>
+            <td class="event-name">Recognition & Awards</td>
+            <td>Grand Ballroom</td>
+            <td><span class="category-badge academic">Academic</span></td>
+            <td class="status-cell"><span class="status-dot"></span> Open</td>
+            <td><a href="event.html#confirm-modal-6" class="btn-register">Register</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="../assets/icons/tugon_logo.png" alt="TUGON" />
+        <p>Your centralized school event management platform.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <a href="home.html">Home</a>
+        <a href="event.html">Events</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="signup.html">Register</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:alcantara_franzcharl@plpasig.edu.ph">alcantara_franzcharl@plpasig.edu.ph</a>
+        <a href="mailto:tabios_almiragwen@plpasig.edu.ph">tabios_almiragwen@plpasig.edu.ph</a>
+        <a href="mailto:bautista_joshuan@plpasig.edu.ph">bautista_joshuan@plpasig.edu.ph</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 TUGON School Event System. All rights reserved.</span>
+    </div>
+  </footer>
+
 </body>
 </html>
