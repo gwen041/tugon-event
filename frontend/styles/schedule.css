@@ -192,7 +192,7 @@ thead {
 }
 
 th {
-  padding: 1.2rem 1.5rem;
+  padding: 1.5rem;
   font-size: 0.75rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -210,10 +210,11 @@ td {
 }
 
 /* Specific column adjustments */
-td:nth-child(1) { min-width: 140px; } /* Date */
-td:nth-child(2) { min-width: 160px; } /* Time */
-td:nth-child(3) { white-space: normal; min-width: 250px; } /* Event Name - allowed to wrap if very long */
-td:nth-child(4) { white-space: normal; min-width: 180px; } /* Location */
+td:nth-child(1), th:nth-child(1) { min-width: 140px; }
+td:nth-child(2), th:nth-child(2) { min-width: 160px; }
+td:nth-child(3), th:nth-child(3) { white-space: normal; min-width: 250px; }
+td:nth-child(4), th:nth-child(4) { white-space: normal; min-width: 180px; }
+td:nth-child(6), th:nth-child(6) { text-align: center; } /* Status Column */
 
 tr:last-child td {
   border-bottom: none;
@@ -230,8 +231,9 @@ tr:last-child td {
 }
 
 .status-cell {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   font-weight: 600;
   font-size: 0.85rem;

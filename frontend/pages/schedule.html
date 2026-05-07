@@ -34,10 +34,11 @@
 
   <!-- FILTERS -->
   <section class="filter-container">
-    <button class="filter-btn active">All Events</button>
-    <button class="filter-btn">Academic</button>
-    <button class="filter-btn">Cultural/Social</button>
-    <button class="filter-btn">Sports</button>
+    <button class="filter-btn active" data-category="all">All Events</button>
+    <button class="filter-btn" data-category="academic">Academic</button>
+    <button class="filter-btn" data-category="cultural">Cultural/Social</button>
+    <button class="filter-btn" data-category="sports">Sports</button>
+    <button class="filter-btn" data-category="tech">Tech</button>
   </section>
 
   <!-- SCHEDULE TABLE -->
@@ -56,7 +57,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-category="academic">
             <td>April 28, 2026</td>
             <td class="time-cell">8:00 - 5:00 PM</td>
             <td class="event-name">Academic Excellence Summit</td>
@@ -65,7 +66,7 @@
             <td class="status-cell"><span class="status-dot"></span> Open</td>
             <td><a href="event.html#confirm-modal-1" class="btn-register">Register</a></td>
           </tr>
-          <tr>
+          <tr data-category="cultural">
             <td>May 5, 2026</td>
             <td class="time-cell">6:00 - 9:00 PM</td>
             <td class="event-name">Cultural & Social Night</td>
@@ -74,7 +75,7 @@
             <td class="status-cell"><span class="status-dot"></span> Open</td>
             <td><a href="event.html#confirm-modal-2" class="btn-register">Register</a></td>
           </tr>
-          <tr>
+          <tr data-category="sports">
             <td>May 7, 2026</td>
             <td class="time-cell">8:00 - 5:00 PM</td>
             <td class="event-name">Intramurals 2025</td>
@@ -83,7 +84,7 @@
             <td class="status-cell"><span class="status-dot"></span> Open</td>
             <td><a href="event.html#confirm-modal-3" class="btn-register">Register</a></td>
           </tr>
-          <tr>
+          <tr data-category="cultural">
             <td>May 12, 2026</td>
             <td class="time-cell">5:00 - 8:00 PM</td>
             <td class="event-name">Talent Showcase Night</td>
@@ -92,7 +93,7 @@
             <td class="status-cell"><span class="status-dot"></span> Open</td>
             <td><a href="event.html#confirm-modal-4" class="btn-register">Register</a></td>
           </tr>
-          <tr>
+          <tr data-category="tech">
             <td>May 15, 2026</td>
             <td class="time-cell">24 Hours</td>
             <td class="event-name">Hackathon: Code for Change</td>
@@ -101,7 +102,7 @@
             <td class="status-cell"><span class="status-dot"></span> Open</td>
             <td><a href="event.html#confirm-modal-5" class="btn-register">Register</a></td>
           </tr>
-          <tr>
+          <tr data-category="academic">
             <td>May 20, 2026</td>
             <td class="time-cell">10:00 - 12:00 PM</td>
             <td class="event-name">Recognition & Awards</td>
@@ -141,5 +142,30 @@
     </div>
   </footer>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const rows = document.querySelectorAll('tbody tr');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Update active button
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const category = btn.getAttribute('data-category');
+
+          // Filter rows
+          rows.forEach(row => {
+            if (category === 'all' || row.getAttribute('data-category') === category) {
+              row.style.display = '';
+            } else {
+              row.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
 </body>
 </html>
