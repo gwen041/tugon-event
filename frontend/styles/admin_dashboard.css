@@ -364,6 +364,11 @@ body {
   background-size: 1.1rem;
 }
 
+.form-group select option {
+  background: var(--dark-card);
+  color: var(--white);
+}
+
 .form-group input:hover, 
 .form-group select:hover, 
 .form-group textarea:hover {

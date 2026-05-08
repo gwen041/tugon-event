@@ -314,3 +314,4 @@ p  { font-size: 1rem; line-height: 1.7; color: var(--gray-mid); }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .form-group select { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-sm); padding: 0.85rem 1rem; color: var(--white); font-size: 1rem; font-family: var(--font-body); width: 100%; transition: var(--transition); cursor: pointer; }
 .form-group select:focus { outline: none; border-color: var(--teal-main); background: rgba(255,255,255,0.08); }
+.form-group select option { background: var(--dark-card); color: var(--white); }
