@@ -47,6 +47,12 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; line
   border-bottom: 1px solid rgba(0,122,122,0.2);
 }
 .nav-logo img { height: 75px; width: auto; object-fit: contain; }
+
+/* Hide checkbox visually */
+.menu-toggle {
+  display: none;
+}
+
 .nav-links { display: flex; gap: 2rem; align-items: center; margin-left: auto; }
 .nav-links a:not(.nav-cta) {
   font-family: var(--font-body); font-size: 0.8rem; font-weight: 800;
@@ -408,8 +414,34 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .nav-links { display: none; }
+  /* Display hamburger */
   .hamburger { display: flex; }
+
+  /* Hide nav links by default on mobile */
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 90px;
+    left: 0;
+    width: 100%;
+    background: rgba(10,10,10,0.98);
+    backdrop-filter: blur(16px);
+    flex-direction: column;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(0,122,122,0.2);
+  }
+
+  /* Show nav links when checkbox is checked */
+  .menu-toggle:checked ~ .nav-links {
+    display: flex;
+  }
+
+  .nav-user-dropdown {
+    width: 100%;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
   .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
   .schedule-hero { padding-top: 6rem; }
 }
