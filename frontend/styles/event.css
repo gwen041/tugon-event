@@ -373,7 +373,7 @@ footer {
   .nav-links { 
     display: none; 
     position: absolute;
-    top: 90px; /* Same height as navbar */
+    top: 90px;
     left: 0;
     width: 100%;
     background: rgba(10,10,10,0.98);
@@ -384,9 +384,7 @@ footer {
   }
 
   /* MAGIC: When the hidden checkbox is checked, show the navigation */
-  .menu-toggle:checked ~ .nav-links {
-    display: flex;
-  }
+  .menu-toggle:checked ~ .nav-links { display: flex; }
 
   /* Adjust dropdown logic for mobile view */
   .nav-user-dropdown {
@@ -401,4 +399,15 @@ footer {
   .card-footer .btn { width: 100%; }
   .modal-content { padding: 2rem; margin: 1rem; }
   .modal-actions { flex-direction: column-reverse; }
+
+  .event-detail-hero { padding: 4rem 4% 3rem; }
+  .event-detail-text h1 { font-size: clamp(1.5rem, 5vw, 2.4rem); }
+}
+
+@media (max-width: 480px) {
+  .navbar { padding: 0 1rem; }
+  .section { padding: 3rem 4%; }
+  .meta-chip { font-size: 0.78rem; padding: 0.4rem 0.8rem; }
+  .modal-actions .btn { padding: 0.8rem 1rem; }
+  .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
 }

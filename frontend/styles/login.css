@@ -175,8 +175,10 @@ p  { font-size: 1rem; line-height: 1.7; color: var(--gray-mid); }
 }
 
 @media (max-width: 480px) {
-  .form-card { padding: 2rem; }
+  .form-card { padding: 1.75rem 1.25rem; }
   .form-options { flex-direction: column; gap: 1rem; align-items: flex-start; }
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+  .login-form-wrap { padding: 2rem 1rem; }
 }
 /* Modal Styles */
 .admin-modal-overlay {

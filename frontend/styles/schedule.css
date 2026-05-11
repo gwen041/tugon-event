@@ -405,12 +405,8 @@ footer {
 
 /* ── RESPONSIVE ── */
 @media (max-width: 992px) {
-  .table-wrapper {
-    overflow-x: auto;
-  }
-  table {
-    min-width: 900px;
-  }
+  .table-wrapper { overflow-x: auto; }
+  table { min-width: 900px; }
 }
 
 @media (max-width: 768px) {
@@ -432,9 +428,7 @@ footer {
   }
 
   /* Show nav links when checkbox is checked */
-  .menu-toggle:checked ~ .nav-links {
-    display: flex;
-  }
+  .menu-toggle:checked ~ .nav-links { display: flex; }
 
   .nav-user-dropdown {
     width: 100%;
@@ -444,4 +438,17 @@ footer {
 
   .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
   .schedule-hero { padding-top: 6rem; }
+  .schedule-hero h1 { font-size: clamp(1.8rem, 6vw, 2.8rem); }
+  .hero-desc { font-size: 0.95rem; }
+
+  .filter-container { gap: 0.6rem; margin-bottom: 2rem; }
+  .filter-btn { padding: 0.55rem 1.2rem; font-size: 0.82rem; }
+
+  .schedule-container { padding: 0 1.1rem; margin-bottom: 4rem; }
+  .table-wrapper { border-radius: var(--radius-md); }
+}
+
+@media (max-width: 480px) {
+  .filter-container { justify-content: flex-start; padding: 0 1.1rem; }
+  .filter-btn { padding: 0.5rem 0.9rem; font-size: 0.78rem; }
 }
