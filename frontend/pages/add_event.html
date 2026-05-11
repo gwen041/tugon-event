@@ -10,11 +10,102 @@
     href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="../styles/admin_dashboard.css" />
+  
+  <style>
+    /* Extra styles for multi-checkbox targeting (pill grid) — matches modern TUGON UI */
+    .targeting-section {
+      margin-top: 1.5rem;
+      width: 100%;
+      grid-column: 1 / -1;
+    }
+
+    .checkbox-grid-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .pill-checkbox {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(15, 25, 35, 0.9);
+      backdrop-filter: blur(2px);
+      padding: 0.55rem 1.2rem;
+      border-radius: 60px;
+      border: 1px solid rgba(45, 212, 191, 0.35);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #eef5ff;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .pill-checkbox:hover {
+      background: rgba(0, 180, 180, 0.2);
+      border-color: #2dd4bf;
+    }
+
+    .pill-checkbox input {
+      margin: 0;
+      width: 1rem;
+      height: 1rem;
+      accent-color: #2dd4bf;
+      cursor: pointer;
+    }
+
+    .pill-checkbox.disabled {
+      opacity: 0.55;
+      filter: grayscale(0.1);
+      pointer-events: none;
+    }
+
+    .featured-row {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid rgba(45, 212, 191, 0.2);
+    }
+
+    .featured-check {
+      background: rgba(0, 0, 0, 0.35);
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+    }
+
+    .check-pill-featured {
+      background: rgba(45, 212, 191, 0.1);
+    }
+
+    .admin-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .form-left,
+    .form-right {
+      flex: 1;
+      min-width: 260px;
+    }
+
+    @media (max-width: 780px) {
+
+      .form-left,
+      .form-right {
+        flex: 0 0 100%;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- Sidebar -->
+  <!-- Sidebar (original structure) -->
   <aside class="sidebar">
     <div class="sidebar-logo">
       <img src="../assets/icons/icon.png" alt="Icon" />
@@ -66,10 +157,10 @@
     </header>
 
     <div class="form-container">
-      <form class="admin-form" id="create-event-form">
+      <form class="admin-form" id="create-event-form" novalidate>
 
+        <!-- LEFT COLUMN: unchanged original fields (General & Schedule) -->
         <div class="form-left">
-          <!-- Section: Basic Info & Schedule -->
           <div class="form-section">
             <div class="section-header">
               <span class="icon">📝</span>
@@ -107,21 +198,20 @@
           </div>
         </div>
 
+        <!-- RIGHT COLUMN: Description & Logistics (original layout) -->
         <div class="form-right">
-          <!-- Section: Detailed Info & Logistics -->
-          <div class="form-section" style="height: 100%; display: flex; flex-direction: column; min-height: 520px;">
+          <div class="form-section" style="height: 100%; display: flex; flex-direction: column; min-height: 480px;">
             <div class="section-header">
               <span class="icon">⚙️</span>
               <h2>Description & Logistics</h2>
             </div>
-            
+
             <div class="form-group" style="flex-grow: 1; display: flex; flex-direction: column; margin-bottom: 1.5rem;">
               <label for="event-description">Description *</label>
               <textarea id="event-description" placeholder="Describe the event goals and activities..." required
                 style="flex-grow: 1; min-height: 120px;"></textarea>
             </div>
 
-            <!-- Integrated Logistics Grid -->
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
               <div class="form-group">
                 <label for="event-category">Category *</label>
@@ -138,43 +228,91 @@
                 <label for="event-capacity">Capacity (Max 300) *</label>
                 <input type="number" id="event-capacity" min="1" max="300" placeholder="Max 300" required />
               </div>
-              
-              <div class="form-group">
-                <label>Target Audience *</label>
-                <select id="target-audience-type" required onchange="toggleAudienceFields()">
-                  <option value="All">All Students</option>
-                  <option value="Specific">Specific College & Year</option>
-                </select>
-              </div>
+            </div>
+          </div>
+        </div>
 
-              <!-- Specific Fields that appear in the same grid -->
-              <div id="audience-college-wrap" style="display: none;">
-                <div class="form-group">
-                  <label for="target-college">Target College</label>
-                  <select id="target-college">
-                    <option value="Arts and Sciences">College of Arts and Sciences</option>
-                    <option value="Business and Accountancy">College of Business and Accountancy</option>
-                    <option value="Computer Studies">College of Computer Studies</option>
-                    <option value="Education">College of Education</option>
-                    <option value="Engineering">College of Engineering</option>
-                    <option value="Hospitality Management">College of Hospitality Management</option>
-                    <option value="Nursing">College of Nursing</option>
-                  </select>
-                </div>
+        <!-- NEW FULL-WIDTH: TARGET AUDIENCE (multi-checkbox colleges + years) & Featured option -->
+        <div class="targeting-section">
+          <div class="form-section">
+            <div class="section-header">
+              <span class="icon">🎯</span>
+              <h2>Target Audience</h2>
+            </div>
+
+            <!-- Target Colleges - multi-checkbox -->
+            <div class="form-group">
+              <label>Target Colleges * <span style="font-weight: 400; opacity:0.75;">(check all that apply)</span></label>
+              <div class="checkbox-grid-pills" id="college-pill-group">
+                <label class="pill-checkbox" id="college-all-label">
+                  <input type="checkbox" name="target_colleges" value="All" class="college-check" id="college-all" />
+                  <span>🏛️ All Colleges</span>
+                </label>
+                <label class="pill-checkbox">
+                  <input type="checkbox" name="target_colleges" value="Arts and Science" class="college-check" />
+                  <span>Arts and Science</span>
+                </label>
+                <label class="pill-checkbox">
+                  <input type="checkbox" name="target_colleges" value="Business and Accountancy" class="college-check" />
+                  <span>Business &amp; Accountancy</span>
+                </label>
+                <label class="pill-checkbox">
+                  <input type="checkbox" name="target_colleges" value="Computer Studies" class="college-check" />
+                  <span>Computer Studies</span>
+                </label>
+                <label class="pill-checkbox">
+                  <input type="checkbox" name="target_colleges" value="Education" class="college-check" />
+                  <span>Education</span>
+                </label>
+                <label class="pill-checkbox">
+                  <input type="checkbox" name="target_colleges" value="Engineering" class="college-check" />
+                  <span>Engineering</span>
+                </label>
+                <label class="pill-checkbox">
+                  <input type="checkbox" name="target_colleges" value="Hospitality Management" class="college-check" />
+                  <span>Hospitality Management</span>
+                </label>
+                <label class="pill-checkbox">
+                  <input type="checkbox" name="target_colleges" value="Nursing" class="college-check" />
+                  <span>Nursing</span>
+                </label>
               </div>
-              
-              <div id="audience-year-wrap" style="display: none;">
-                <div class="form-group">
-                  <label for="target-year">Target Year</label>
-                  <select id="target-year">
-                    <option value="1st Year">1st Year</option>
-                    <option value="2nd Year">2nd Year</option>
-                    <option value="3rd Year">3rd Year</option>
-                    <option value="4th Year">4th Year</option>
-                    <option value="All Years">All Years</option>
-                  </select>
-                </div>
+            </div>
+
+            <!-- Target Year Levels - multi-checkbox -->
+            <div class="form-group" style="margin-top: 1.8rem;">
+              <label>Target Year Levels * <span style="font-weight: 400; opacity:0.75;">(check all that apply)</span></label>
+              <div class="checkbox-grid-pills" id="year-pill-group">
+                <label class="pill-checkbox" id="year-all-label">
+                  <input type="checkbox" name="target_years" value="All" class="year-check" id="year-all" />
+                  <span>🌟 All Years</span>
+                </label>
+                <label class="pill-checkbox">
+                  <input type="checkbox" name="target_years" value="1st Year" class="year-check" />
+                  <span>1st Year</span>
+                </label>
+                <label class="pill-checkbox">
+                  <input type="checkbox" name="target_years" value="2nd Year" class="year-check" />
+                  <span>2nd Year</span>
+                </label>
+                <label class="pill-checkbox">
+                  <input type="checkbox" name="target_years" value="3rd Year" class="year-check" />
+                  <span>3rd Year</span>
+                </label>
+                <label class="pill-checkbox">
+                  <input type="checkbox" name="target_years" value="4th Year" class="year-check" />
+                  <span>4th Year</span>
+                </label>
               </div>
+            </div>
+
+            <!-- Featured Event Checkbox (as shown in screenshot) -->
+            <div class="featured-row">
+              <label class="pill-checkbox check-pill-featured" style="background: rgba(45,212,191,0.15);">
+                <input type="checkbox" id="is-featured-event" value="1" />
+                <span>📌 Mark as Featured Event</span>
+              </label>
+              <small style="opacity:0.7;">Featured events appear on homepage highlights.</small>
             </div>
           </div>
         </div>
@@ -187,30 +325,205 @@
   </main>
 
   <script>
-    function toggleAudienceFields() {
-      const type = document.getElementById('target-audience-type').value;
-      const collegeWrap = document.getElementById('audience-college-wrap');
-      const yearWrap = document.getElementById('audience-year-wrap');
+    (function() {
+      // ========== 1. MUTUAL EXCLUSION LOGIC: "All Colleges" / specific colleges ==========
+      const collegeAll = document.getElementById('college-all');
+      const allCollegeChecks = document.querySelectorAll('.college-check');
+      const specificCollegeChecks = Array.from(allCollegeChecks).filter(cb => cb.value !== 'All');
       
-      const isSpecific = type === 'Specific';
-      collegeWrap.style.display = isSpecific ? 'block' : 'none';
-      yearWrap.style.display = isSpecific ? 'block' : 'none';
-    }
+      const yearAll = document.getElementById('year-all');
+      const allYearChecks = document.querySelectorAll('.year-check');
+      const specificYearChecks = Array.from(allYearChecks).filter(cb => cb.value !== 'All');
 
-    document.getElementById('create-event-form').addEventListener('submit', function (e) {
-      e.preventDefault();
+      // Helper: update visual disabled class for pills
+      function updateCollegePillState() {
+        if (collegeAll.checked) {
+          specificCollegeChecks.forEach(cb => {
+            cb.checked = false;
+            const parentLabel = cb.closest('.pill-checkbox');
+            if (parentLabel) parentLabel.classList.add('disabled');
+          });
+        } else {
+          specificCollegeChecks.forEach(cb => {
+            const parentLabel = cb.closest('.pill-checkbox');
+            if (parentLabel) parentLabel.classList.remove('disabled');
+          });
+        }
+      }
 
-      // Animation effect on success
-      const btn = this.querySelector('.btn-publish');
-      btn.innerHTML = 'Publishing...';
-      btn.style.opacity = '0.7';
-      btn.style.pointerEvents = 'none';
+      function updateYearPillState() {
+        if (yearAll.checked) {
+          specificYearChecks.forEach(cb => {
+            cb.checked = false;
+            const parentLabel = cb.closest('.pill-checkbox');
+            if (parentLabel) parentLabel.classList.add('disabled');
+          });
+        } else {
+          specificYearChecks.forEach(cb => {
+            const parentLabel = cb.closest('.pill-checkbox');
+            if (parentLabel) parentLabel.classList.remove('disabled');
+          });
+        }
+      }
 
-      setTimeout(() => {
-        alert('Event published successfully!');
-        window.location.href = 'admin_dashboard.html';
-      }, 1200);
-    });
+      // College listeners
+      if (collegeAll) {
+        collegeAll.addEventListener('change', () => {
+          if (collegeAll.checked) {
+            specificCollegeChecks.forEach(cb => cb.checked = false);
+          }
+          updateCollegePillState();
+        });
+        specificCollegeChecks.forEach(cb => {
+          cb.addEventListener('change', () => {
+            if (cb.checked) {
+              collegeAll.checked = false;
+            }
+            updateCollegePillState();
+          });
+        });
+      }
+
+      // Year listeners
+      if (yearAll) {
+        yearAll.addEventListener('change', () => {
+          if (yearAll.checked) {
+            specificYearChecks.forEach(cb => cb.checked = false);
+          }
+          updateYearPillState();
+        });
+        specificYearChecks.forEach(cb => {
+          cb.addEventListener('change', () => {
+            if (cb.checked) {
+              yearAll.checked = false;
+            }
+            updateYearPillState();
+          });
+        });
+      }
+
+      // initial sync
+      updateCollegePillState();
+      updateYearPillState();
+
+      // ========== 2. FORM SUBMIT HANDLER (keep original fields + new multi-checkbox targeting) ==========
+      const form = document.getElementById('create-event-form');
+      const publishBtn = form?.querySelector('.btn-publish');
+
+      function getSelectedColleges() {
+        const checked = Array.from(allCollegeChecks).filter(cb => cb.checked).map(cb => cb.value);
+        if (checked.includes('All')) return ['All'];
+        return checked;
+      }
+
+      function getSelectedYears() {
+        const checked = Array.from(allYearChecks).filter(cb => cb.checked).map(cb => cb.value);
+        if (checked.includes('All')) return ['All'];
+        return checked;
+      }
+
+      function showInlineError(message) {
+        // remove any existing temporary message
+        let errDiv = document.getElementById('dynamic-form-error');
+        if (!errDiv) {
+          errDiv = document.createElement('div');
+          errDiv.id = 'dynamic-form-error';
+          errDiv.style.margin = '0 0 1rem 0';
+          errDiv.style.padding = '0.8rem 1.2rem';
+          errDiv.style.borderRadius = '12px';
+          errDiv.style.backgroundColor = 'rgba(220, 38, 38, 0.15)';
+          errDiv.style.border = '1px solid rgba(239, 68, 68, 0.4)';
+          errDiv.style.color = '#fca5a5';
+          errDiv.style.fontWeight = '500';
+          const formContainer = document.querySelector('.admin-form');
+          if (formContainer && formContainer.firstChild) {
+            formContainer.insertBefore(errDiv, formContainer.firstChild);
+          } else if (formContainer) {
+            formContainer.prepend(errDiv);
+          }
+        }
+        errDiv.textContent = message;
+        errDiv.style.display = 'block';
+        setTimeout(() => errDiv.scrollIntoView({ behavior: 'smooth', block: 'center' }), 50);
+      }
+
+      function clearInlineError() {
+        const errDiv = document.getElementById('dynamic-form-error');
+        if (errDiv) errDiv.style.display = 'none';
+      }
+
+      function validateAllFields() {
+        const title = document.getElementById('event-title').value.trim();
+        const date = document.getElementById('event-date').value;
+        const startTime = document.getElementById('start-time').value;
+        const endTime = document.getElementById('end-time').value;
+        const location = document.getElementById('event-location').value;
+        const description = document.getElementById('event-description').value.trim();
+        const category = document.getElementById('event-category').value;
+        const capacity = document.getElementById('event-capacity').value;
+        
+        if (!title) { showInlineError('❌ Please provide an event title.'); return false; }
+        if (!date) { showInlineError('❌ Select a valid event date.'); return false; }
+        if (!startTime || !endTime) { showInlineError('❌ Fill in both start and end time.'); return false; }
+        if (!location) { showInlineError('❌ Choose a venue / location.'); return false; }
+        if (!description) { showInlineError('❌ Event description is required.'); return false; }
+        if (!category) { showInlineError('❌ Please select an event category.'); return false; }
+        if (!capacity || capacity < 1 || capacity > 300) { showInlineError('❌ Capacity must be between 1 and 300.'); return false; }
+        
+        const colleges = getSelectedColleges();
+        const years = getSelectedYears();
+        if (colleges.length === 0) { showInlineError('🎯 Select at least one target college (or "All Colleges").'); return false; }
+        if (years.length === 0) { showInlineError('📆 Select at least one target year level (or "All Years").'); return false; }
+        
+        clearInlineError();
+        return true;
+      }
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        if (!validateAllFields()) return;
+        
+        // gather final event data
+        const colleges = getSelectedColleges();
+        const years = getSelectedYears();
+        const featured = document.getElementById('is-featured-event').checked;
+        
+        const eventPayload = {
+          title: document.getElementById('event-title').value.trim(),
+          date: document.getElementById('event-date').value,
+          start_time: document.getElementById('start-time').value,
+          end_time: document.getElementById('end-time').value,
+          location: document.getElementById('event-location').value,
+          description: document.getElementById('event-description').value.trim(),
+          category: document.getElementById('event-category').value,
+          capacity: parseInt(document.getElementById('event-capacity').value, 10),
+          target_colleges: colleges,
+          target_years: years,
+          is_featured: featured
+        };
+        
+        // button animation (original style)
+        if (publishBtn) {
+          publishBtn.innerHTML = 'Publishing...';
+          publishBtn.style.opacity = '0.7';
+          publishBtn.style.pointerEvents = 'none';
+        }
+        
+        // Simulate backend call / success as original (alert + redirect)
+        setTimeout(() => {
+          let collegeDisplay = colleges[0] === 'All' ? 'All Colleges' : colleges.join(', ');
+          let yearDisplay = years[0] === 'All' ? 'All Year Levels' : years.join(', ');
+          let featuredMsg = featured ? '⭐ Featured Event YES' : 'Regular Event';
+          
+          alert(`✅ Event published successfully!\n\n📌 "${eventPayload.title}"\n🎯 Targeting:\n   • Colleges: ${collegeDisplay}\n   • Year Levels: ${yearDisplay}\n   • ${featuredMsg}\n\nRedirecting to dashboard...`);
+          // simulate redirect like original
+          window.location.href = 'admin_dashboard.html';
+        }, 1000);
+      });
+      
+      // optional: attach to any dynamic recheck
+    })();
   </script>
 </body>
 
