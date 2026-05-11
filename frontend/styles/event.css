@@ -1,4 +1,4 @@
-    :root {
+:root {
       --teal-dark:   #004d4d;
       --teal-main:   #007a7a;
       --teal-mid:    #009999;
@@ -81,6 +81,11 @@
     }
     .nav-cta:hover { filter: brightness(1.1); }
 
+    /* Checkbox hack hiding */
+    .menu-toggle {
+      display: none;
+    }
+
     /* User Dropdown */
     .nav-user-dropdown {
       position: relative;
@@ -108,9 +113,7 @@
       transform: translateY(-2px);
     }
 
-    .user-avatar {
-      font-size: 1.2rem;
-    }
+    .user-avatar { font-size: 1.2rem; }
 
     .user-dropdown {
       position: absolute;
@@ -164,13 +167,9 @@
       color: var(--white);
     }
 
-    .logout-item {
-      color: #ff4d4d !important;
-    }
+    .logout-item { color: #ff4d4d !important; }
+    .logout-item:hover { background: rgba(255, 77, 77, 0.1) !important; }
 
-    .logout-item:hover {
-      background: rgba(255, 77, 77, 0.1) !important;
-    }
     .hamburger {
       display: none; flex-direction: column; gap: 5px;
       cursor: pointer; padding: 4px; background: none; border: none;
@@ -231,6 +230,9 @@
       display: grid; grid-template-columns: 1fr;
       gap: 3rem;
     }
+    .event-detail-text {
+      transition: opacity 0.3s ease;
+    }
     .event-detail-text .section-label { color: var(--teal-light); }
     .event-detail-text h1 {
       color: var(--white); margin: 0.5rem 0 1rem;
@@ -254,8 +256,6 @@
       padding: 0.45rem 1rem; border-radius: var(--radius-xl);
       font-size: 0.82rem; font-weight: 600;
     }
-
-    /* Register button in featured event aligned with chips */
     .event-meta-chips .btn-sm {
       background: var(--teal-main);
       color: var(--white);
@@ -270,10 +270,7 @@
     }
 
     /* ── ALL EVENTS SECTION ── */
-    .section {
-      max-width: 1280px; margin: 0 auto;
-      padding: 6rem 5%;
-    }
+    .section { max-width: 1280px; margin: 0 auto; padding: 6rem 5%; }
     .section-header { text-align: center; margin-bottom: 3.5rem; }
     .section-header h2 { margin: 0.4rem 0 0.8rem; }
     .section-header p { max-width: 520px; margin: 0 auto; }
@@ -307,105 +304,38 @@
     .card-body h3 { font-size: 1.1rem; margin-bottom: 0.45rem; color: var(--dark); }
     .card-body p { font-size: 0.88rem; margin-bottom: 1.2rem; flex-grow: 1; }
 
-    /* Card footer with two buttons */
-    .card-footer {
-      display: flex; gap: 0.8rem;
-      margin-top: auto;
-    }
-    .card-footer .btn {
-      flex: 1;
-      justify-content: center;
-    }
-    .card-footer .btn-primary {
-      flex: 1.2;
-    }
+    .card-footer { display: flex; gap: 0.8rem; margin-top: auto; }
+    .card-footer .btn { flex: 1; justify-content: center; }
+    .card-footer .btn-primary { flex: 1.2; }
 
     /* ── MODAL STYLES ── */
     .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(4px);
-      z-index: 2000;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px);
+      z-index: 2000; align-items: center; justify-content: center; padding: 1rem;
     }
-
-    /* Show modal when targeted */
-    .modal-overlay:target {
-      display: flex;
-    }
-
+    .modal-overlay:target { display: flex; }
     .modal-content {
-      background: var(--white);
-      border-radius: var(--radius-lg);
-      padding: 2.5rem;
-      max-width: 420px;
-      width: 100%;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      background: var(--white); border-radius: var(--radius-lg); padding: 2.5rem;
+      max-width: 420px; width: 100%; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
       animation: slideUp 0.35s ease-out;
     }
-
     @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-
-    .modal-content h2 {
-      color: var(--dark);
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-    }
-
-    .modal-content p {
-      color: var(--gray-mid);
-      margin-bottom: 2rem;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    .modal-content strong {
-      color: var(--teal-main);
-      font-weight: 700;
-    }
-
-    .modal-actions {
-      display: flex;
-      gap: 1rem;
-      justify-content: flex-end;
-    }
-
-    .modal-actions .btn {
-      padding: 0.7rem 1.5rem;
-      font-size: 0.88rem;
-      flex: 1;
-      justify-content: center;
-    }
-
-    .modal-actions .btn-secondary {
-      background: var(--off-white);
-      color: var(--dark);
-      border: 1.5px solid var(--gray-light);
-    }
-
-    .modal-actions .btn-secondary:hover {
-      background: var(--gray-light);
-      color: var(--dark);
-    }
+    .modal-content h2 { color: var(--dark); margin-bottom: 1rem; font-size: 1.5rem; }
+    .modal-content p { color: var(--gray-mid); margin-bottom: 2rem; font-size: 0.95rem; line-height: 1.6; }
+    .modal-content strong { color: var(--teal-main); font-weight: 700; }
+    .modal-actions { display: flex; gap: 1rem; justify-content: flex-end; }
+    .modal-actions .btn { padding: 0.7rem 1.5rem; font-size: 0.88rem; flex: 1; justify-content: center; }
+    .modal-actions .btn-secondary { background: var(--off-white); color: var(--dark); border: 1.5px solid var(--gray-light); }
+    .modal-actions .btn-secondary:hover { background: var(--gray-light); color: var(--dark); }
 
     /* ── FOOTER ── */
     footer {
       background: var(--black); color: var(--white);
-      padding: 4rem 5% 2rem;
-      border-top: 1px solid rgba(0,122,122,0.12);
+      padding: 4rem 5% 2rem; border-top: 1px solid rgba(0,122,122,0.12);
     }
     .footer-inner {
       max-width: 1280px; margin: 0 auto;
@@ -419,48 +349,56 @@
       text-transform: uppercase; color: var(--teal-main); margin-bottom: 1.2rem;
     }
     .footer-col a {
-      display: block; font-size: 0.88rem;
-      color: rgba(255,255,255,0.5); margin-bottom: 0.7rem;
-      transition: color var(--transition);
+      display: block; font-size: 0.88rem; color: rgba(255,255,255,0.5);
+      margin-bottom: 0.7rem; transition: color var(--transition);
     }
     .footer-col a:hover { color: var(--white); }
     .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 1.5rem; text-align: center;
-      font-size: 0.78rem; color: rgba(255,255,255,0.3);
+      border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem;
+      text-align: center; font-size: 0.78rem; color: rgba(255,255,255,0.3);
     }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .event-detail-inner { grid-template-columns: 1fr; }
-      .event-meta-chips {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .event-meta-chips .btn-sm {
-        width: 100%;
-      }
+      .event-meta-chips { flex-direction: column; align-items: flex-start; }
+      .event-meta-chips .btn-sm { width: 100%; }
     }
 
     @media (max-width: 768px) {
-      .nav-links { display: none; }
+      /* Display the Hamburger Label */
       .hamburger { display: flex; }
+      
+      /* Hide regular menu, position for mobile */
+      .nav-links { 
+        display: none; 
+        position: absolute;
+        top: 90px; /* Same height as navbar */
+        left: 0;
+        width: 100%;
+        background: rgba(10,10,10,0.98);
+        backdrop-filter: blur(16px);
+        flex-direction: column;
+        padding: 2rem 0;
+        border-bottom: 1px solid rgba(0,122,122,0.2);
+      }
+
+      /* MAGIC: When the hidden checkbox is checked, show the navigation */
+      .menu-toggle:checked ~ .nav-links {
+        display: flex;
+      }
+
+      /* Adjust dropdown logic for mobile view */
+      .nav-user-dropdown {
+        width: 100%;
+        justify-content: center;
+        margin-top: 1rem;
+      }
+
       .events-grid { grid-template-columns: 1fr; }
       .footer-inner { grid-template-columns: 1fr; gap: 1.5rem; }
-      
-      .card-footer {
-        flex-direction: column;
-      }
-      .card-footer .btn {
-        width: 100%;
-      }
-      
-      .modal-content {
-        padding: 2rem;
-        margin: 1rem;
-      }
-      
-      .modal-actions {
-        flex-direction: column-reverse;
-      }
+      .card-footer { flex-direction: column; }
+      .card-footer .btn { width: 100%; }
+      .modal-content { padding: 2rem; margin: 1rem; }
+      .modal-actions { flex-direction: column-reverse; }
     }
