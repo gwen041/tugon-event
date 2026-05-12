@@ -74,100 +74,90 @@
         </div>
         
         <div class="event-selector" id="event-selector">
-          <button class="btn-event-pill" data-event="Academic Excellence Summit">Academic Excellence Summit</button>
-          <button class="btn-event-pill" data-event="Cultural & Social Night">Cultural & Social Night</button>
-          <button class="btn-event-pill" data-event="Intramurals 2025">Intramurals 2025</button>
-          <button class="btn-event-pill" data-event="Hackathon 2025">Hackathon 2025</button>
+          <p style="color:rgba(255,255,255,0.45);font-size:0.9rem;">Loading events…</p>
         </div>
 
         <div id="participants-container">
-          <div class="no-selection-msg">
-            <p>Select an event above to view participants.</p>
-          </div>
+          <div class="no-selection-msg"><p>Select an event above to view participants.</p></div>
         </div>
       </div>
     </div>
   </main>
 
   <script>
-    // Mock Data for demonstration
-    const registrationData = {
-      "Academic Excellence Summit": [
-        "Juan dela Cruz",
-        "Ana Lim",
-        "Liza Mendoza",
-        "Mark Santos",
-        "Elena Reyes"
-      ],
-      "Cultural & Social Night": [
-        "Robert Chen",
-        "Sarah Johnson",
-        "Michael Garcia",
-        "Emily Davis"
-      ],
-      "Intramurals 2025": [
-        "David Wilson",
-        "Chris Evans",
-        "Jessica Alba",
-        "Ryan Reynolds",
-        "Tom Holland",
-        "Zendaya"
-      ],
-      "Hackathon 2025": [
-        "Steve Jobs",
-        "Bill Gates",
-        "Ada Lovelace",
-        "Alan Turing"
-      ]
-    };
+    /* ── Guard ── */
+    const adminToken = localStorage.getItem('tugon_admin_token');
+    if (!adminToken) window.location.href = 'login.html';
 
-    const selector = document.getElementById('event-selector');
+    async function apiFetch(url) {
+      return fetch(url, { headers: { 'Authorization': 'Bearer ' + adminToken } });
+    }
+
+    const selector  = document.getElementById('event-selector');
     const container = document.getElementById('participants-container');
 
-    selector.addEventListener('click', (e) => {
-      const btn = e.target.closest('.btn-event-pill');
-      if (!btn) return;
+    /* Load all events and render pills */
+    async function loadEvents() {
+      try {
+        const res    = await apiFetch('/api/admin/events');
+        const events = await res.json();
+        if (!res.ok || !events.length) {
+          selector.innerHTML = '<p style="color:rgba(255,255,255,0.45);">No events found.</p>';
+          return;
+        }
+        selector.innerHTML = events.map(e =>
+          `<button class="btn-event-pill" data-id="${e.id}">${e.title}</button>`
+        ).join('');
 
-      // Update active state
-      document.querySelectorAll('.btn-event-pill').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const eventName = btn.getAttribute('data-event');
-      const participants = registrationData[eventName] || [];
-
-      renderParticipants(eventName, participants);
-    });
-
-    function renderParticipants(eventName, list) {
-      let html = `
-        <div class="participants-header">
-          <h3><span>${list.length}</span> participants registered for <span>${eventName}</span></h3>
-        </div>
-        <div class="participants-list">
-      `;
-
-      if (list.length === 0) {
-        html += `<div class="no-selection-msg">No participants registered for this event yet.</div>`;
-      } else {
-        list.forEach((name, index) => {
-          html += `
-            <div class="participant-card" style="animation: slideIn 0.3s ease forwards ${index * 0.05}s; opacity: 0;">
-              <div class="participant-num">${index + 1}</div>
-              <div class="participant-name">${name}</div>
-            </div>
-          `;
+        selector.querySelectorAll('.btn-event-pill').forEach(btn => {
+          btn.addEventListener('click', () => {
+            selector.querySelectorAll('.btn-event-pill').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            loadParticipants(btn.dataset.id, btn.textContent);
+          });
         });
+      } catch {
+        selector.innerHTML = '<p style="color:#fca5a5;">Server unreachable.</p>';
       }
-
-      html += `</div>`;
-      container.innerHTML = html;
     }
+
+    async function loadParticipants(eventId, eventName) {
+      container.innerHTML = '<p style="color:rgba(255,255,255,0.45);padding:1rem;">Loading…</p>';
+      try {
+        const res  = await apiFetch(`/api/admin/registrations/${eventId}`);
+        const list = await res.json();
+
+        let html = `<div class="participants-header">
+          <h3><span>${list.length}</span> participant${list.length !== 1 ? 's' : ''} registered for <span>${eventName}</span></h3>
+        </div><div class="participants-list">`;
+
+        if (!list.length) {
+          html += '<div class="no-selection-msg"><p>No participants registered yet.</p></div>';
+        } else {
+          list.forEach((s, i) => {
+            html += `<div class="participant-card" style="animation:slideIn 0.3s ease forwards ${i * 0.05}s;opacity:0;">
+              <div class="participant-num">${i + 1}</div>
+              <div class="participant-name">
+                ${s.first_name} ${s.last_name}
+                <small style="opacity:0.6;display:block;">${s.student_number} · ${s.college} · ${s.year_level}</small>
+              </div>
+            </div>`;
+          });
+        }
+        html += '</div>';
+        container.innerHTML = html;
+      } catch {
+        container.innerHTML = '<p style="color:#fca5a5;">Failed to load participants.</p>';
+      }
+    }
+
+    loadEvents();
   </script>
 
   <style>
     @keyframes slideIn {
       from { opacity: 0; transform: translateX(-20px); }
-      to { opacity: 1; transform: translateX(0); }
+      to   { opacity: 1; transform: translateX(0); }
     }
   </style>
 </body>

@@ -9,20 +9,17 @@
   <link rel="stylesheet" href="../styles/event.css" />
 </head>
 <body>
-  <!-- NAVBAR -->
   <nav class="navbar">
     <a href="home.html" class="nav-logo">
       <img src="../assets/icons/icon.png" alt="TUGON Icon" />
     </a>
 
-    <!-- CHECKBOX HACK START -->
     <input type="checkbox" id="menu-toggle" class="menu-toggle">
     <label for="menu-toggle" class="hamburger" aria-label="Menu">
       <span></span>
       <span></span>
       <span></span>
     </label>
-    <!-- CHECKBOX HACK END -->
 
     <ul class="nav-links">
       <li><a href="home.html">Home</a></li>
@@ -34,9 +31,12 @@
         </button>
         <div class="user-dropdown">
           <div class="dropdown-header">
-            <span class="user-name">Student Account</span>
+            <span class="user-name" id="student-name">Student Account</span>
+            <span id="dropdown-college" style="display:block;font-size:0.78rem;color:rgba(255,255,255,0.5);margin-top:0.15rem;"></span>
+            <span id="dropdown-year" style="display:block;font-size:0.78rem;color:rgba(255,255,255,0.4);"></span>
           </div>
-          <a href="login.html" class="dropdown-item logout-item">
+          <a href="#" class="dropdown-item" id="edit-profile-link" style="border-top:1px solid rgba(255,255,255,0.08);padding-top:0.5rem;margin-top:0.25rem;">✏️ Edit Profile</a>
+          <a href="login.html" class="dropdown-item logout-item" id="logout-link">
             <span>Log Out</span>
           </a>
         </div>
@@ -46,27 +46,14 @@
 
   <main class="page-content">
 
-    <!-- FEATURED EVENT -->
     <section class="event-detail-hero">
       <div class="event-detail-inner">
-        <div class="event-detail-text">
-          <p class="section-label">📌 Featured Event</p>
-          <h1>Academic Excellence Summit 2025</h1>
-          <p class="desc">Join us for a full-day symposium featuring student research presentations, faculty keynotes,
-            panel discussions, and hands-on workshops designed to inspire the next generation of scholars.</p>
-          <div class="event-meta-chips">
-            <span class="meta-chip">📅 April 28, 2026</span>
-            <span class="meta-chip">🕗 8:00 AM – 5:00 PM</span>
-            <span class="meta-chip">📍 Main Hall, Building A</span>
-            <span class="meta-chip">🎓 Academic</span>
-            <span class="meta-chip">👥 200 Seats</span>
-            <a href="#confirm-modal-1" class="btn btn-primary btn-sm">Register Now</a>
-          </div>
+        <div class="event-detail-text" id="featured-container">
+          <p style="color:rgba(255,255,255,0.4);">Loading featured event…</p>
         </div>
       </div>
     </section>
 
-    <!-- ALL EVENTS -->
     <section class="section">
       <div class="section-header">
         <p class="section-label">This Term</p>
@@ -74,169 +61,12 @@
         <p>Browse everything coming up on campus. Click any event for more details and to register.</p>
       </div>
 
-      <div class="events-grid">
-
-        <div class="event-card">
-          <div class="card-img" style="background:linear-gradient(135deg,#0a3d18,#1a7a2e);">
-            <span class="card-badge">Academic</span>
-          </div>
-          <div class="card-body">
-            <h3>Academic Excellence Summit</h3>
-            <p>Student research presentations and faculty keynotes for all departments.</p>
-            <div class="card-footer">
-              <a href="schedule.html" class="btn btn-primary btn-sm">Details</a>
-              <a href="#confirm-modal-1" class="btn btn-secondary btn-sm">Register</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="event-card">
-          <div class="card-img" style="background:linear-gradient(135deg,#7c2b8b,#be185d);">
-            <span class="card-badge">Cultural</span>
-          </div>
-          <div class="card-body">
-            <h3>Cultural &amp; Social Night</h3>
-            <p>Celebrate campus diversity with performances, food, and traditional showcases.</p>
-            <div class="card-footer">
-              <a href="schedule.html" class="btn btn-primary btn-sm">Details</a>
-              <a href="#confirm-modal-2" class="btn btn-secondary btn-sm">Register</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="event-card">
-          <div class="card-img" style="background:linear-gradient(135deg,#164e63,#0891b2);">
-            <span class="card-badge">Sports</span>
-          </div>
-          <div class="card-body">
-            <h3>Intramurals 2025</h3>
-            <p>Three days of inter-department sports competitions for all athletes.</p>
-            <div class="card-footer">
-              <a href="schedule.html" class="btn btn-primary btn-sm">Details</a>
-              <a href="#confirm-modal-3" class="btn btn-secondary btn-sm">Register</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="event-card">
-          <div class="card-img" style="background:linear-gradient(135deg,#78350f,#d97706);">
-            <span class="card-badge">Talent</span>
-          </div>
-          <div class="card-body">
-            <h3>Talent Showcase Night</h3>
-            <p>Students perform original acts — singing, dancing, spoken word, and more.</p>
-            <div class="card-footer">
-              <a href="schedule.html" class="btn btn-primary btn-sm">Details</a>
-              <a href="#confirm-modal-4" class="btn btn-secondary btn-sm">Register</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="event-card">
-          <div class="card-img" style="background:linear-gradient(135deg,#312e81,#4f46e5);">
-            <span class="card-badge">Tech</span>
-          </div>
-          <div class="card-body">
-            <h3>Hackathon: Code for Change</h3>
-            <p>24-hour coding marathon to build solutions for real community problems.</p>
-            <div class="card-footer">
-              <a href="schedule.html" class="btn btn-primary btn-sm">Details</a>
-              <a href="#confirm-modal-5" class="btn btn-secondary btn-sm">Register</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="event-card">
-          <div class="card-img" style="background:linear-gradient(135deg,#1f2937,#374151);">
-            <span class="card-badge">Ceremony</span>
-          </div>
-          <div class="card-body">
-            <h3>Recognition &amp; Awards Ceremony</h3>
-            <p>Honoring outstanding students, faculty, and organizations for their contributions.</p>
-            <div class="card-footer">
-              <a href="schedule.html" class="btn btn-primary btn-sm">Details</a>
-              <a href="#confirm-modal-6" class="btn btn-secondary btn-sm">Register</a>
-            </div>
-          </div>
-        </div>
-
+      <div class="events-grid" id="events-grid">
+        <p style="color:rgba(255,255,255,0.5);padding:2rem;">Loading events…</p>
       </div>
     </section>
 
   </main>
-
-  <!-- CONFIRMATION MODALS -->
-  <!-- Modal 1: Academic Excellence Summit -->
-  <div id="confirm-modal-1" class="modal-overlay">
-    <div class="modal-content">
-      <h2>Confirm Registration</h2>
-      <p>Are you sure you want to register to this <strong>Academic Excellence Summit</strong>?</p>
-      <div class="modal-actions">
-        <a href="event.html" class="btn btn-secondary">Cancel</a>
-        <a href="register.html" class="btn btn-primary">Yes, Register</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 2: Cultural & Social Night -->
-  <div id="confirm-modal-2" class="modal-overlay">
-    <div class="modal-content">
-      <h2>Confirm Registration</h2>
-      <p>Are you sure you want to register to this <strong>Cultural &amp; Social Night</strong>?</p>
-      <div class="modal-actions">
-        <a href="event.html" class="btn btn-secondary">Cancel</a>
-        <a href="register.html" class="btn btn-primary">Yes, Register</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 3: Intramurals 2025 -->
-  <div id="confirm-modal-3" class="modal-overlay">
-    <div class="modal-content">
-      <h2>Confirm Registration</h2>
-      <p>Are you sure you want to register to this <strong>Intramurals 2025</strong>?</p>
-      <div class="modal-actions">
-        <a href="event.html" class="btn btn-secondary">Cancel</a>
-        <a href="register.html" class="btn btn-primary">Yes, Register</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 4: Talent Showcase Night -->
-  <div id="confirm-modal-4" class="modal-overlay">
-    <div class="modal-content">
-      <h2>Confirm Registration</h2>
-      <p>Are you sure you want to register to this <strong>Talent Showcase Night</strong>?</p>
-      <div class="modal-actions">
-        <a href="event.html" class="btn btn-secondary">Cancel</a>
-        <a href="register.html" class="btn btn-primary">Yes, Register</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 5: Hackathon -->
-  <div id="confirm-modal-5" class="modal-overlay">
-    <div class="modal-content">
-      <h2>Confirm Registration</h2>
-      <p>Are you sure you want to register to this <strong>Hackathon: Code for Change</strong>?</p>
-      <div class="modal-actions">
-        <a href="event.html" class="btn btn-secondary">Cancel</a>
-        <a href="register.html" class="btn btn-primary">Yes, Register</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 6: Recognition & Awards Ceremony -->
-  <div id="confirm-modal-6" class="modal-overlay">
-    <div class="modal-content">
-      <h2>Confirm Registration</h2>
-      <p>Are you sure you want to register to this <strong>Recognition &amp; Awards Ceremony</strong>?</p>
-      <div class="modal-actions">
-        <a href="event.html" class="btn btn-secondary">Cancel</a>
-        <a href="register.html" class="btn btn-primary">Yes, Register</a>
-      </div>
-    </div>
-  </div>
 
   <footer>
     <div class="footer-inner">
@@ -261,5 +91,377 @@
       <span>&copy; 2026 TUGON School Event System. All rights reserved.</span>
     </div>
   </footer>
+
+  <div id="profile-modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:9999;align-items:center;justify-content:center;">
+    <div style="background:#1a2332;border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:2rem;width:min(480px,93vw);box-shadow:0 20px 60px rgba(0,0,0,0.5);max-height:90vh;overflow-y:auto;">
+      <h3 style="margin:0 0 1.25rem;font-family:'Syne',sans-serif;font-size:1.15rem;color:#fff;">✏️ Edit Profile</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+        <div>
+          <label style="display:block;font-size:0.8rem;color:rgba(255,255,255,0.6);margin-bottom:0.3rem;">First Name *</label>
+          <input id="pm-first-name" type="text" style="width:100%;padding:0.6rem 0.8rem;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:#0f1923;color:#fff;font-size:0.9rem;box-sizing:border-box;" />
+        </div>
+        <div>
+          <label style="display:block;font-size:0.8rem;color:rgba(255,255,255,0.6);margin-bottom:0.3rem;">Last Name *</label>
+          <input id="pm-last-name" type="text" style="width:100%;padding:0.6rem 0.8rem;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:#0f1923;color:#fff;font-size:0.9rem;box-sizing:border-box;" />
+        </div>
+      </div>
+      <div style="margin-top:0.75rem;">
+        <label style="display:block;font-size:0.8rem;color:rgba(255,255,255,0.6);margin-bottom:0.3rem;">Email *</label>
+        <input id="pm-email" type="email" style="width:100%;padding:0.6rem 0.8rem;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:#0f1923;color:#fff;font-size:0.9rem;box-sizing:border-box;" />
+      </div>
+      <div style="margin-top:0.75rem;">
+        <label style="display:block;font-size:0.8rem;color:rgba(255,255,255,0.6);margin-bottom:0.3rem;">College *</label>
+        <select id="pm-college" style="width:100%;padding:0.6rem 0.8rem;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:#0f1923;color:#fff;font-size:0.9rem;">
+          <option value="">— Select College —</option>
+          <option>Education</option>
+          <option>Computer Studies</option>
+          <option>Nursing</option>
+          <option>Engineering</option>
+          <option>Arts and Science</option>
+          <option>Business and Accountancy</option>
+          <option>Hospitality Management</option>
+        </select>
+      </div>
+      <div id="pm-course-wrap" style="display:none;margin-top:0.75rem;">
+        <label style="display:block;font-size:0.8rem;color:rgba(255,255,255,0.6);margin-bottom:0.3rem;">Course *</label>
+        <select id="pm-course" style="width:100%;padding:0.6rem 0.8rem;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:#0f1923;color:#fff;font-size:0.9rem;">
+          <option value="">-- Select Course --</option>
+        </select>
+      </div>
+      <div id="pm-major-wrap" style="display:none;margin-top:0.75rem;">
+        <label style="display:block;font-size:0.8rem;color:rgba(255,255,255,0.6);margin-bottom:0.3rem;">Major *</label>
+        <select id="pm-major" style="width:100%;padding:0.6rem 0.8rem;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:#0f1923;color:#fff;font-size:0.9rem;">
+          <option value="">-- Select Major --</option>
+          <option value="English">English</option>
+          <option value="Filipino">Filipino</option>
+          <option value="Mathematics">Mathematics</option>
+        </select>
+      </div>
+      <div style="margin-top:0.75rem;">
+        <label style="display:block;font-size:0.8rem;color:rgba(255,255,255,0.6);margin-bottom:0.3rem;">Year Level *</label>
+        <select id="pm-year-level" style="width:100%;padding:0.6rem 0.8rem;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:#0f1923;color:#fff;font-size:0.9rem;">
+          <option value="">— Select Year —</option>
+          <option>1st Year</option>
+          <option>2nd Year</option>
+          <option>3rd Year</option>
+          <option>4th Year</option>
+        </select>
+      </div>
+      <p id="pm-error" style="color:#fca5a5;font-size:0.83rem;margin:0.75rem 0 0;min-height:1.2em;"></p>
+      <div style="display:flex;gap:0.75rem;justify-content:flex-end;margin-top:1.25rem;">
+        <button id="pm-cancel" style="padding:0.55rem 1.25rem;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:transparent;color:rgba(255,255,255,0.7);cursor:pointer;font-size:0.9rem;">Cancel</button>
+        <button id="pm-save" style="padding:0.55rem 1.4rem;border-radius:8px;border:none;background:#2dd4bf;color:#0f1923;font-weight:700;cursor:pointer;font-size:0.9rem;">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const token   = localStorage.getItem('tugon_token');
+    const student = JSON.parse(localStorage.getItem('tugon_student') || 'null');
+    if (!token || !student) { window.location.href = 'login.html'; }
+    else {
+      const el = document.getElementById('student-name');
+      if (el) el.textContent = student.name || 'Student Account';
+      const colEl = document.getElementById('dropdown-college');
+      if (colEl) colEl.textContent = student.college || '';
+      const yrEl = document.getElementById('dropdown-year');
+      if (yrEl) yrEl.textContent = student.year_level || '';
+    }
+
+    document.getElementById('logout-link').addEventListener('click', (e) => {
+      e.preventDefault();
+      localStorage.removeItem('tugon_token');
+      localStorage.removeItem('tugon_student');
+      window.location.href = 'login.html';
+    });
+
+    const catColors = {
+      Academic: 'linear-gradient(135deg,#0a3d18,#1a7a2e)',
+      Cultural:  'linear-gradient(135deg,#7c2b8b,#be185d)',
+      Sports:    'linear-gradient(135deg,#164e63,#0891b2)',
+      Social:    'linear-gradient(135deg,#78350f,#d97706)',
+      Tech:      'linear-gradient(135deg,#312e81,#4f46e5)',
+      Others:    'linear-gradient(135deg,#1f2937,#374151)',
+    };
+
+    async function apiFetch(url, opts = {}) {
+      return fetch(url, {
+        ...opts,
+        headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json', ...(opts.headers || {}) },
+      });
+    }
+
+    function buildFeaturedSlide(e) {
+      const dateStr = e.date ? new Date(e.date).toLocaleDateString('en-PH', { year:'numeric', month:'long', day:'numeric' }) : '';
+      const timeStr = [e.start_time, e.end_time].filter(Boolean).join(' – ');
+      const full    = e.capacity && (e.registration_count || 0) >= e.capacity;
+      let btnLabel, btnStyle = '';
+      if (e.registered) {
+        btnLabel = '✅ Registered — Click to Unregister';
+      } else if (full) {
+        btnLabel  = 'Full';
+        btnStyle  = 'opacity:.55;cursor:not-allowed;background:rgba(239,68,68,0.2);color:#fca5a5;border-color:rgba(239,68,68,0.4);';
+      } else {
+        btnLabel = 'Register Now';
+      }
+      return `
+        <p class="section-label">📌 Featured Event</p>
+        <h1>${e.title}</h1>
+        <p class="desc">${e.description || ''}</p>
+        <div class="event-meta-chips">
+          ${dateStr ? `<span class="meta-chip">📅 ${dateStr}</span>` : ''}
+          ${timeStr ? `<span class="meta-chip">🕗 ${timeStr}</span>`  : ''}
+          ${e.location ? `<span class="meta-chip">📍 ${e.location}</span>` : ''}
+          ${e.category ? `<span class="meta-chip">🎓 ${e.category}</span>` : ''}
+          ${e.capacity ? `<span class="meta-chip">👥 ${e.registration_count||0}/${e.capacity} Seats</span>` : ''}
+          <button class="btn btn-primary btn-sm register-btn"
+            data-id="${e.id}" data-registered="${e.registered ? '1' : '0'}" ${full && !e.registered ? 'disabled' : ''}
+            style="${btnStyle}">
+            ${btnLabel}
+          </button>
+        </div>`;
+    }
+
+    async function loadFeatured() {
+      const container = document.getElementById('featured-container');
+      if (!container) return;
+      try {
+        const res    = await apiFetch('/api/events/featured');
+        const events = await res.json();
+        if (!res.ok || !events.length) {
+          container.innerHTML = '<p class="section-label" style="opacity:.5;">No featured event for your college or year level.</p>';
+          return;
+        }
+        const featured = events[0];
+        container.innerHTML = buildFeaturedSlide(featured);
+        container.querySelector('.register-btn').addEventListener('click', function() {
+          handleRegister(featured.id, this);
+        });
+      } catch { container.innerHTML = ''; }
+    }
+
+    async function loadAllEvents() {
+      const grid = document.getElementById('events-grid');
+      if (!grid) return;
+      grid.innerHTML = '<p style="color:rgba(255,255,255,0.5);padding:2rem;">Loading events…</p>';
+      try {
+        const res    = await apiFetch('/api/events');
+        const events = await res.json();
+        if (!res.ok) { grid.innerHTML = '<p style="color:#fca5a5;">Failed to load events.</p>'; return; }
+        if (!events.length) { grid.innerHTML = '<p style="color:rgba(255,255,255,0.5);padding:2rem;">No events available for your college/year level yet.</p>'; return; }
+
+        grid.innerHTML = events.map(e => {
+          const bg   = catColors[e.category] || catColors.Others;
+          const cardImgStyle = e.image_url
+            ? `background:${bg};background-image:url('${e.image_url}');background-size:cover;background-position:center;`
+            : `background:${bg};`;
+          const full = e.capacity && (e.registration_count || 0) >= e.capacity;
+          let actionHtml;
+          if (full && !e.registered) {
+            actionHtml = `
+              <button class="btn btn-secondary btn-sm" disabled
+                style="opacity:.55;cursor:not-allowed;background:rgba(239,68,68,0.2);color:#fca5a5;border-color:rgba(239,68,68,0.4);">
+                Full
+              </button>
+              <a href="schedule.html" class="btn btn-secondary btn-sm" style="margin-left:0.4rem;">Details</a>`;
+          } else {
+            const btnLabel = e.registered ? '✅ Registered' : 'Register';
+            actionHtml = `
+              <button class="btn btn-secondary btn-sm register-btn"
+                data-id="${e.id}" data-registered="${e.registered ? '1' : '0'}">
+                ${btnLabel}
+              </button>
+              <a href="schedule.html" class="btn btn-secondary btn-sm" style="margin-left:0.4rem;">Details</a>`;
+          }
+          return `
+            <div class="event-card">
+              <div class="card-img" style="${cardImgStyle}">
+                <span class="card-badge">${e.category || 'Event'}</span>
+              </div>
+              <div class="card-body">
+                <h3>${e.title}</h3>
+                <p>${e.description ? e.description.substring(0, 90) + (e.description.length > 90 ? '…' : '') : ''}</p>
+                <div class="card-footer">
+                  ${actionHtml}
+                </div>
+              </div>
+            </div>`;
+        }).join('');
+
+        grid.querySelectorAll('.register-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            handleRegister(this.dataset.id, this);
+          });
+        });
+      } catch {
+        grid.innerHTML = '<p style="color:#fca5a5;">Server unreachable.</p>';
+      }
+    }
+
+    async function handleRegister(id, btn) {
+      if (btn.dataset.registered === '1') {
+        if (!confirm('Unregister from this event?')) return;
+        btn.textContent = 'Unregistering…';
+        btn.disabled    = true;
+        try {
+          const res = await apiFetch(`/api/events/${id}/register`, { method: 'DELETE' });
+          if (res.ok) {
+            btn.textContent        = 'Register Now';
+            btn.dataset.registered = '0';
+            btn.disabled           = false;
+            btn.style              = '';
+            loadFeatured();
+            loadAllEvents();
+          } else {
+            const data = await res.json();
+            alert(data.error || 'Failed to unregister.');
+            btn.textContent = '✅ Registered — Click to Unregister';
+            btn.disabled    = false;
+          }
+        } catch {
+          alert('Server unreachable.');
+          btn.textContent = '✅ Registered — Click to Unregister';
+          btn.disabled    = false;
+        }
+        return;
+      }
+      btn.textContent = 'Registering…';
+      btn.disabled    = true;
+      try {
+        const res  = await apiFetch(`/api/events/${id}/register`, { method: 'POST' });
+        const data = await res.json();
+        if (res.ok) {
+          btn.textContent        = '✅ Registered — Click to Unregister';
+          btn.dataset.registered = '1';
+          btn.disabled           = false;
+        } else if (res.status === 409 && data.error && data.error.includes('already registered')) {
+          btn.textContent        = '✅ Registered — Click to Unregister';
+          btn.dataset.registered = '1';
+          btn.disabled           = false;
+        } else {
+          alert(data.error || 'Registration failed.');
+          btn.textContent = 'Register Now';
+          btn.disabled    = false;
+        }
+      } catch {
+        alert('Server unreachable.');
+        btn.textContent = 'Register Now';
+        btn.disabled    = false;
+      }
+    }
+
+    loadFeatured();
+    loadAllEvents();
+
+    const PM_COURSES = {
+      'Computer Studies': ['BS in Computer Science', 'BS in Information Technology'],
+      'Education':        ['Bachelor in Elementary Education (BEEd)', 'Bachelor in Secondary Education (BSEd)'],
+    };
+
+    function pmUpdateCourse(college, courseVal) {
+      const courseWrap = document.getElementById('pm-course-wrap');
+      const majorWrap  = document.getElementById('pm-major-wrap');
+      const courseEl   = document.getElementById('pm-course');
+      const opts = PM_COURSES[college];
+      courseEl.innerHTML = '<option value="">-- Select Course --</option>';
+      majorWrap.style.display  = 'none';
+      document.getElementById('pm-major').value = '';
+      if (opts) {
+        opts.forEach(c => {
+          const o = document.createElement('option');
+          o.value = o.textContent = c;
+          courseEl.appendChild(o);
+        });
+        courseEl.value = courseVal || '';
+        courseWrap.style.display = 'block';
+        pmUpdateMajor(courseEl.value, '');
+      } else {
+        courseEl.value = '';
+        courseWrap.style.display = 'none';
+      }
+    }
+
+    function pmUpdateMajor(courseVal, majorVal) {
+      const majorWrap = document.getElementById('pm-major-wrap');
+      if (courseVal === 'Bachelor in Secondary Education (BSEd)') {
+        majorWrap.style.display = 'block';
+        document.getElementById('pm-major').value = majorVal || '';
+      } else {
+        majorWrap.style.display = 'none';
+        document.getElementById('pm-major').value = '';
+      }
+    }
+
+    document.getElementById('pm-college').addEventListener('change', function() {
+      pmUpdateCourse(this.value, '');
+    });
+    document.getElementById('pm-course').addEventListener('change', function() {
+      pmUpdateMajor(this.value, '');
+    });
+
+    document.getElementById('edit-profile-link').addEventListener('click', async (e) => {
+      e.preventDefault();
+      let profileData = null;
+      try {
+        const res = await apiFetch('/api/auth/profile');
+        profileData = await res.json();
+      } catch { profileData = student; }
+      openProfileModal(profileData);
+    });
+
+    function openProfileModal(s) {
+      document.getElementById('profile-modal-overlay').style.display = 'flex';
+      document.getElementById('pm-first-name').value  = s.first_name || (s.name || '').split(' ')[0] || '';
+      document.getElementById('pm-last-name').value   = s.last_name  || (s.name || '').split(' ').slice(1).join(' ') || '';
+      document.getElementById('pm-email').value       = s.email      || '';
+      document.getElementById('pm-college').value     = s.college    || '';
+      document.getElementById('pm-year-level').value  = s.year_level || '';
+      document.getElementById('pm-error').textContent = '';
+      pmUpdateCourse(s.college || '', s.course || '');
+      pmUpdateMajor(s.course || '', s.major || '');
+    }
+
+    document.getElementById('pm-cancel').addEventListener('click', () => {
+      document.getElementById('profile-modal-overlay').style.display = 'none';
+    });
+    document.getElementById('profile-modal-overlay').addEventListener('click', function(e) {
+      if (e.target === this) this.style.display = 'none';
+    });
+
+    document.getElementById('pm-save').addEventListener('click', async () => {
+      const errEl = document.getElementById('pm-error');
+      errEl.textContent = '';
+      const body = {
+        first_name: document.getElementById('pm-first-name').value.trim(),
+        last_name:  document.getElementById('pm-last-name').value.trim(),
+        email:      document.getElementById('pm-email').value.trim(),
+        college:    document.getElementById('pm-college').value,
+        course:     document.getElementById('pm-course').value || null,
+        major:      document.getElementById('pm-major').value || null,
+        year_level: document.getElementById('pm-year-level').value,
+      };
+      if (!body.first_name || !body.last_name || !body.email || !body.college || !body.year_level) {
+        errEl.textContent = 'Please fill all required fields.'; return;
+      }
+      const saveBtn = document.getElementById('pm-save');
+      saveBtn.textContent = 'Saving…'; saveBtn.disabled = true;
+      try {
+        const res  = await apiFetch('/api/auth/profile', { method: 'PUT', body: JSON.stringify(body) });
+        const data = await res.json();
+        if (res.ok) {
+          localStorage.setItem('tugon_token', data.token);
+          localStorage.setItem('tugon_student', JSON.stringify(data.student));
+          document.getElementById('student-name').textContent = data.student.name;
+          document.getElementById('dropdown-college').textContent = data.student.college;
+          document.getElementById('dropdown-year').textContent   = data.student.year_level;
+          document.getElementById('profile-modal-overlay').style.display = 'none';
+          loadFeatured(); loadAllEvents();
+        } else {
+          errEl.textContent = data.error || 'Update failed.';
+        }
+      } catch { errEl.textContent = 'Server unreachable.'; }
+      saveBtn.textContent = 'Save Changes'; saveBtn.disabled = false;
+    });
+  </script>
 </body>
 </html>

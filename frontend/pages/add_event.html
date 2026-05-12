@@ -202,6 +202,11 @@
                 <option value="School Field">School Field</option>
               </select>
             </div>
+            <div class="form-group" style="margin-top: 0.5rem;">
+              <label for="event-image">Event Banner Image <span style="font-weight:400;opacity:0.7;">(optional, jpg/png/webp, max 5MB)</span></label>
+              <input type="file" id="event-image" name="event_image" accept="image/jpeg,image/png,image/webp,image/gif"
+                style="width:100%;padding:0.5rem 0.85rem;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:#0f1923;color:rgba(255,255,255,0.8);font-size:0.9rem;cursor:pointer;" />
+            </div>
           </div>
         </div>
 
@@ -312,17 +317,8 @@
                 </label>
               </div>
             </div>
-
-            <!-- Featured Event Checkbox (as shown in screenshot) -->
-            <div class="featured-row">
-              <label class="pill-checkbox check-pill-featured" style="background: rgba(45,212,191,0.15);">
-                <input type="checkbox" id="is-featured-event" value="1" />
-                <span>📌 Mark as Featured Event</span>
-              </label>
-              <small style="opacity:0.7;">Featured events appear on homepage highlights.</small>
             </div>
           </div>
-        </div>
 
         <div class="btn-publish-container">
           <button type="submit" class="btn btn-dash btn-publish">Publish Event →</button>
@@ -486,7 +482,7 @@
         return true;
       }
 
-      form.addEventListener('submit', function(e) {
+      form.addEventListener('submit', async function(e) {
         e.preventDefault();
         
         if (!validateAllFields()) return;
@@ -494,8 +490,6 @@
         // gather final event data
         const colleges = getSelectedColleges();
         const years = getSelectedYears();
-        const featured = document.getElementById('is-featured-event').checked;
-        
         const eventPayload = {
           title: document.getElementById('event-title').value.trim(),
           date: document.getElementById('event-date').value,
@@ -507,26 +501,57 @@
           capacity: parseInt(document.getElementById('event-capacity').value, 10),
           target_colleges: colleges,
           target_years: years,
-          is_featured: featured
         };
         
-        // button animation (original style)
+        /* ── Real API call ─────────────────────────────── */
+        const adminToken = localStorage.getItem('tugon_admin_token');
+        if (!adminToken) { window.location.href = 'login.html'; return; }
+
         if (publishBtn) {
-          publishBtn.innerHTML = 'Publishing...';
+          publishBtn.innerHTML = 'Publishing…';
           publishBtn.style.opacity = '0.7';
           publishBtn.style.pointerEvents = 'none';
         }
-        
-        // Simulate backend call / success as original (alert + redirect)
-        setTimeout(() => {
-          let collegeDisplay = colleges[0] === 'All' ? 'All Colleges' : colleges.join(', ');
-          let yearDisplay = years[0] === 'All' ? 'All Year Levels' : years.join(', ');
-          let featuredMsg = featured ? '⭐ Featured Event YES' : 'Regular Event';
-          
-          alert(`✅ Event published successfully!\n\n📌 "${eventPayload.title}"\n🎯 Targeting:\n   • Colleges: ${collegeDisplay}\n   • Year Levels: ${yearDisplay}\n   • ${featuredMsg}\n\nRedirecting to dashboard...`);
-          // simulate redirect like original
+
+        try {
+          /* Use FormData so we can optionally include an image file */
+          const formData = new FormData();
+          formData.append('title',           document.getElementById('event-title').value.trim());
+          formData.append('date',            document.getElementById('event-date').value);
+          formData.append('start_time',      document.getElementById('start-time').value);
+          formData.append('end_time',        document.getElementById('end-time').value);
+          formData.append('location',        document.getElementById('event-location').value);
+          formData.append('description',     document.getElementById('event-description').value.trim());
+          formData.append('category',        document.getElementById('event-category').value);
+          formData.append('capacity',        document.getElementById('event-capacity').value);
+          formData.append('target_colleges', JSON.stringify(colleges));
+          formData.append('target_years',    JSON.stringify(years));
+
+          const imageFile = document.getElementById('event-image').files[0];
+          if (imageFile) formData.append('event_image', imageFile);
+
+          const res  = await fetch('/api/admin/events', {
+            method: 'POST',
+            headers: { 'Authorization': 'Bearer ' + adminToken },
+            /* NOTE: do NOT set Content-Type here; browser sets multipart boundary */
+            body: formData,
+          });
+          const data = await res.json();
+          if (!res.ok) {
+            showInlineError(data.error || 'Failed to publish event.');
+            publishBtn.innerHTML = 'Publish Event →';
+            publishBtn.style.opacity = '';
+            publishBtn.style.pointerEvents = '';
+            return;
+          }
+          alert('✅ Event published successfully! Redirecting to dashboard…');
           window.location.href = 'admin_dashboard.html';
-        }, 1000);
+        } catch {
+          showInlineError('Could not reach the server. Is it running?');
+          publishBtn.innerHTML = 'Publish Event →';
+          publishBtn.style.opacity = '';
+          publishBtn.style.pointerEvents = '';
+        }
       });
       
       // optional: attach to any dynamic recheck

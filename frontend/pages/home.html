@@ -36,9 +36,12 @@
         </button>
         <div class="user-dropdown">
           <div class="dropdown-header">
-            <span class="user-name">Student Account</span>
+            <span class="user-name" id="student-name">Student Account</span>
+            <span id="dropdown-college" style="display:block;font-size:0.78rem;color:rgba(255,255,255,0.5);margin-top:0.15rem;"></span>
+            <span id="dropdown-year" style="display:block;font-size:0.78rem;color:rgba(255,255,255,0.4);"></span>
           </div>
-          <a href="login.html" class="dropdown-item logout-item">
+          <a href="#" class="dropdown-item" id="edit-profile-link" style="border-top:1px solid rgba(255,255,255,0.08);padding-top:0.5rem;margin-top:0.25rem;">✏️ Edit Profile</a>
+          <a href="login.html" class="dropdown-item logout-item" id="logout-link">
             <span>Log Out</span>
           </a>
         </div>
@@ -92,6 +95,210 @@
     </div>
   </footer>
 
+  <!-- PROFILE MODAL -->
+  <div id="profile-modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:9999;align-items:center;justify-content:center;">
+    <div style="background:#1a2332;border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:2rem;width:min(480px,93vw);box-shadow:0 20px 60px rgba(0,0,0,0.5);max-height:90vh;overflow-y:auto;">
+      <h3 style="margin:0 0 1.25rem;font-family:'Syne',sans-serif;font-size:1.15rem;color:#fff;">✏️ Edit Profile</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+        <div>
+          <label style="display:block;font-size:0.8rem;color:rgba(255,255,255,0.6);margin-bottom:0.3rem;">First Name *</label>
+          <input id="pm-first-name" type="text" style="width:100%;padding:0.6rem 0.8rem;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:#0f1923;color:#fff;font-size:0.9rem;box-sizing:border-box;" />
+        </div>
+        <div>
+          <label style="display:block;font-size:0.8rem;color:rgba(255,255,255,0.6);margin-bottom:0.3rem;">Last Name *</label>
+          <input id="pm-last-name" type="text" style="width:100%;padding:0.6rem 0.8rem;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:#0f1923;color:#fff;font-size:0.9rem;box-sizing:border-box;" />
+        </div>
+      </div>
+      <div style="margin-top:0.75rem;">
+        <label style="display:block;font-size:0.8rem;color:rgba(255,255,255,0.6);margin-bottom:0.3rem;">Email *</label>
+        <input id="pm-email" type="email" style="width:100%;padding:0.6rem 0.8rem;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:#0f1923;color:#fff;font-size:0.9rem;box-sizing:border-box;" />
+      </div>
+      <div style="margin-top:0.75rem;">
+        <label style="display:block;font-size:0.8rem;color:rgba(255,255,255,0.6);margin-bottom:0.3rem;">College *</label>
+        <select id="pm-college" style="width:100%;padding:0.6rem 0.8rem;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:#0f1923;color:#fff;font-size:0.9rem;">
+          <option value="">— Select College —</option>
+          <option>Education</option>
+          <option>Computer Studies</option>
+          <option>Nursing</option>
+          <option>Engineering</option>
+          <option>Arts and Science</option>
+          <option>Business and Accountancy</option>
+          <option>Hospitality Management</option>
+        </select>
+      </div>
+      <div id="pm-course-wrap" style="display:none;margin-top:0.75rem;">
+        <label style="display:block;font-size:0.8rem;color:rgba(255,255,255,0.6);margin-bottom:0.3rem;">Course *</label>
+        <select id="pm-course" style="width:100%;padding:0.6rem 0.8rem;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:#0f1923;color:#fff;font-size:0.9rem;">
+          <option value="">-- Select Course --</option>
+        </select>
+      </div>
+      <div id="pm-major-wrap" style="display:none;margin-top:0.75rem;">
+        <label style="display:block;font-size:0.8rem;color:rgba(255,255,255,0.6);margin-bottom:0.3rem;">Major *</label>
+        <select id="pm-major" style="width:100%;padding:0.6rem 0.8rem;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:#0f1923;color:#fff;font-size:0.9rem;">
+          <option value="">-- Select Major --</option>
+          <option value="English">English</option>
+          <option value="Filipino">Filipino</option>
+          <option value="Mathematics">Mathematics</option>
+        </select>
+      </div>
+      <div style="margin-top:0.75rem;">
+        <label style="display:block;font-size:0.8rem;color:rgba(255,255,255,0.6);margin-bottom:0.3rem;">Year Level *</label>
+        <select id="pm-year-level" style="width:100%;padding:0.6rem 0.8rem;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:#0f1923;color:#fff;font-size:0.9rem;">
+          <option value="">— Select Year —</option>
+          <option>1st Year</option>
+          <option>2nd Year</option>
+          <option>3rd Year</option>
+          <option>4th Year</option>
+        </select>
+      </div>
+      <p id="pm-error" style="color:#fca5a5;font-size:0.83rem;margin:0.75rem 0 0;min-height:1.2em;"></p>
+      <div style="display:flex;gap:0.75rem;justify-content:flex-end;margin-top:1.25rem;">
+        <button id="pm-cancel" style="padding:0.55rem 1.25rem;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:transparent;color:rgba(255,255,255,0.7);cursor:pointer;font-size:0.9rem;">Cancel</button>
+        <button id="pm-save" style="padding:0.55rem 1.4rem;border-radius:8px;border:none;background:#2dd4bf;color:#0f1923;font-weight:700;cursor:pointer;font-size:0.9rem;">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    /* ── Auth guard + show student name ─────────────────── */
+    const token   = localStorage.getItem('tugon_token');
+    const student = JSON.parse(localStorage.getItem('tugon_student') || 'null');
+    if (!token || !student) {
+      window.location.href = 'login.html';
+    } else {
+      const el = document.getElementById('student-name');
+      if (el) el.textContent = student.name || 'Student Account';
+      const colEl = document.getElementById('dropdown-college');
+      if (colEl) colEl.textContent = student.college || '';
+      const yrEl = document.getElementById('dropdown-year');
+      if (yrEl) yrEl.textContent = student.year_level || '';
+    }
+
+    document.getElementById('logout-link').addEventListener('click', (e) => {
+      e.preventDefault();
+      localStorage.removeItem('tugon_token');
+      localStorage.removeItem('tugon_student');
+      window.location.href = 'login.html';
+    });
+
+    async function apiFetch(url, opts = {}) {
+      return fetch(url, {
+        ...opts,
+        headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json', ...(opts.headers || {}) },
+      });
+    }
+
+    /* ── Edit Profile ────────────────────────────────────── */
+    const PM_COURSES = {
+      'Computer Studies': ['BS in Computer Science', 'BS in Information Technology'],
+      'Education':        ['Bachelor in Elementary Education (BEEd)', 'Bachelor in Secondary Education (BSEd)'],
+    };
+
+    function pmUpdateCourse(college, courseVal) {
+      const courseWrap = document.getElementById('pm-course-wrap');
+      const majorWrap  = document.getElementById('pm-major-wrap');
+      const courseEl   = document.getElementById('pm-course');
+      const opts = PM_COURSES[college];
+      courseEl.innerHTML = '<option value="">-- Select Course --</option>';
+      majorWrap.style.display  = 'none';
+      document.getElementById('pm-major').value = '';
+      if (opts) {
+        opts.forEach(c => {
+          const o = document.createElement('option');
+          o.value = o.textContent = c;
+          courseEl.appendChild(o);
+        });
+        courseEl.value = courseVal || '';
+        courseWrap.style.display = 'block';
+        pmUpdateMajor(courseEl.value, '');
+      } else {
+        courseEl.value = '';
+        courseWrap.style.display = 'none';
+      }
+    }
+
+    function pmUpdateMajor(courseVal, majorVal) {
+      const majorWrap = document.getElementById('pm-major-wrap');
+      if (courseVal === 'Bachelor in Secondary Education (BSEd)') {
+        majorWrap.style.display = 'block';
+        document.getElementById('pm-major').value = majorVal || '';
+      } else {
+        majorWrap.style.display = 'none';
+        document.getElementById('pm-major').value = '';
+      }
+    }
+
+    document.getElementById('pm-college').addEventListener('change', function() {
+      pmUpdateCourse(this.value, '');
+    });
+    document.getElementById('pm-course').addEventListener('change', function() {
+      pmUpdateMajor(this.value, '');
+    });
+
+    document.getElementById('edit-profile-link').addEventListener('click', async (e) => {
+      e.preventDefault();
+      let profileData = null;
+      try {
+        const res = await apiFetch('/api/auth/profile');
+        profileData = await res.json();
+      } catch { profileData = student; }
+      openProfileModal(profileData);
+    });
+
+    function openProfileModal(s) {
+      document.getElementById('profile-modal-overlay').style.display = 'flex';
+      document.getElementById('pm-first-name').value  = s.first_name || (s.name || '').split(' ')[0] || '';
+      document.getElementById('pm-last-name').value   = s.last_name  || (s.name || '').split(' ').slice(1).join(' ') || '';
+      document.getElementById('pm-email').value       = s.email      || '';
+      document.getElementById('pm-college').value     = s.college    || '';
+      document.getElementById('pm-year-level').value  = s.year_level || '';
+      document.getElementById('pm-error').textContent = '';
+      pmUpdateCourse(s.college || '', s.course || '');
+      pmUpdateMajor(s.course || '', s.major || '');
+    }
+
+    document.getElementById('pm-cancel').addEventListener('click', () => {
+      document.getElementById('profile-modal-overlay').style.display = 'none';
+    });
+    document.getElementById('profile-modal-overlay').addEventListener('click', function(e) {
+      if (e.target === this) this.style.display = 'none';
+    });
+
+    document.getElementById('pm-save').addEventListener('click', async () => {
+      const errEl = document.getElementById('pm-error');
+      errEl.textContent = '';
+      const body = {
+        first_name: document.getElementById('pm-first-name').value.trim(),
+        last_name:  document.getElementById('pm-last-name').value.trim(),
+        email:      document.getElementById('pm-email').value.trim(),
+        college:    document.getElementById('pm-college').value,
+        course:     document.getElementById('pm-course').value || null,
+        major:      document.getElementById('pm-major').value || null,
+        year_level: document.getElementById('pm-year-level').value,
+      };
+      if (!body.first_name || !body.last_name || !body.email || !body.college || !body.year_level) {
+        errEl.textContent = 'Please fill all required fields.'; return;
+      }
+      const saveBtn = document.getElementById('pm-save');
+      saveBtn.textContent = 'Saving…'; saveBtn.disabled = true;
+      try {
+        const res  = await apiFetch('/api/auth/profile', { method: 'PUT', body: JSON.stringify(body) });
+        const data = await res.json();
+        if (res.ok) {
+          localStorage.setItem('tugon_token', data.token);
+          localStorage.setItem('tugon_student', JSON.stringify(data.student));
+          document.getElementById('student-name').textContent     = data.student.name;
+          document.getElementById('dropdown-college').textContent = data.student.college;
+          document.getElementById('dropdown-year').textContent    = data.student.year_level;
+          document.getElementById('profile-modal-overlay').style.display = 'none';
+        } else {
+          errEl.textContent = data.error || 'Update failed.';
+        }
+      } catch { errEl.textContent = 'Server unreachable.'; }
+      saveBtn.textContent = 'Save Changes'; saveBtn.disabled = false;
+    });
+  </script>
 </body>
 
 </html>
