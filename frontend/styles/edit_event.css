@@ -1,0 +1,58 @@
+.targeting-section {
+    margin-top: 1.5rem;
+    width: 100%;
+    grid-column: 1 / -1;
+}
+.checkbox-grid-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+.pill-checkbox {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(15, 25, 35, 0.9);
+    backdrop-filter: blur(2px);
+    padding: 0.55rem 1.2rem;
+    border-radius: 60px;
+    border: 1px solid rgba(45, 212, 191, 0.35);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #eef5ff;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+.pill-checkbox:hover {
+    background: rgba(0, 180, 180, 0.2);
+    border-color: #2dd4bf;
+}
+.pill-checkbox input {
+    margin: 0;
+    width: 1rem;
+    height: 1rem;
+    accent-color: #2dd4bf;
+    cursor: pointer;
+}
+.pill-checkbox.disabled {
+    opacity: 0.55;
+    filter: grayscale(0.1);
+    pointer-events: none;
+}
+.admin-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+.form-left,
+.form-right {
+    flex: 1;
+    min-width: 260px;
+}
+@media (max-width: 780px) {
+    .form-left,
+    .form-right {
+    flex: 0 0 100%;
+    }
+}
